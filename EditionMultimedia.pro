@@ -14,11 +14,17 @@ MOC_DIR = objects
 RCC_DIR = objects
 UI_DIR = objects
 
-HEADERS += include/DocumentationWindow.h \
-           include/MainWindow.h
+HEADERS += include/Data.h \
+           include/DocumentationWindow.h \
+           include/MainWindow.h \
+           include/MultimediaFile.h \
+           include/Settings.h
 SOURCES += source/EditionMultimedia.cpp \
+           source/Data.cpp \
            source/DocumentationWindow.cpp \
-           source/MainWindow.cpp
+           source/MainWindow.cpp \
+           source/MultimediaFile.cpp \
+           source/Settings.cpp
 FORMS += interfaces/DocumentationWindow.ui \
          interfaces/MainWindow.ui
 RESOURCES += ressources/Ressources.qrc
