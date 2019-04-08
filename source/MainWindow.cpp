@@ -30,6 +30,8 @@ void MainWindow::createNewData()
             QString::fromUtf8("Fichier multimedia (*.avi *.mkv *.mov *.mp4 *.mpeg *.mpg *.wmv)"));
     if (filePath.isEmpty())
         return;
+
+    // TODO void MainWindow::createNewData()
 }
 
 void MainWindow::loadExistingData()
@@ -39,6 +41,8 @@ void MainWindow::loadExistingData()
             QString::fromUtf8("Fichier d'édition multimedia (*.csv)"));
     if (filePath.isEmpty())
         return;
+
+    // TODO void MainWindow::loadExistingData()
 }
 
 void MainWindow::saveCurrentData()
@@ -48,11 +52,13 @@ void MainWindow::saveCurrentData()
             QString::fromUtf8("Fichier d'édition multimedia (*.csv)"));
     if (filePath.isEmpty())
         return;
+
+    // TODO void MainWindow::saveCurrentData()
 }
 
 void MainWindow::processCurrentData()
 {
-
+    // TODO void MainWindow::processCurrentData()
 }
 
 void MainWindow::on_actionNew_triggered()
@@ -94,4 +100,59 @@ void MainWindow::on_actionAbout_triggered()
                     "Réalisée par Alexis Foerster (alexis.foerster@gmail.com)."), QMessageBox::Ok,
             this);
     messageBox->exec();
+}
+
+void MainWindow::on_spinBoxFrameBegin_valueChanged()
+{
+    // TODO void MainWindow::on_spinBoxFrameBegin_valueChanged()
+}
+
+void MainWindow::on_spinBoxFrameCurrent_valueChanged()
+{
+    // TODO void MainWindow::on_spinBoxFrameCurrent_valueChanged()
+}
+
+void MainWindow::on_spinBoxFrameEnd_valueChanged()
+{
+    // TODO void MainWindow::on_spinBoxFrameEnd_valueChanged()
+}
+
+void MainWindow::on_comboBoxVideoMethod_currentIndexChanged()
+{
+    // TODO void MainWindow::on_comboBoxVideoMethod_currentIndexChanged()
+}
+
+void MainWindow::on_comboBoxVideoQuality_currentIndexChanged()
+{
+    // TODO void MainWindow::on_comboBoxVideoQuality_currentIndexChanged()
+}
+
+void MainWindow::on_comboBoxVideoSpeed_currentIndexChanged()
+{
+    // TODO void MainWindow::on_comboBoxVideoSpeed_currentIndexChanged()
+}
+
+void MainWindow::on_spinBoxVideoBitRate_valueChanged()
+{
+    // TODO void MainWindow::on_spinBoxVideoBitRate_valueChanged()
+}
+
+void MainWindow::on_doubleSpinBoxVideoMaxSize_valueChanged()
+{
+    // TODO void MainWindow::on_doubleSpinBoxVideoMaxSize_valueChanged()
+}
+
+void MainWindow::on_doubleSpinBoxVideoFramesPerSecond_valueChanged()
+{
+    // TODO void MainWindow::on_doubleSpinBoxVideoFramesPerSecond_valueChanged()
+}
+
+void MainWindow::on_comboBoxAudioMethod_currentIndexChanged()
+{
+    // TODO void MainWindow::on_comboBoxAudioMethod_currentIndexChanged()
+}
+
+void MainWindow::on_spinBoxAudioBitRate_valueChanged()
+{
+    // TODO void MainWindow::on_spinBoxAudioBitRate_valueChanged()
 }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>653</height>
+    <width>629</width>
+    <height>358</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,21 +18,331 @@
     <normaloff>:/icons/icon-edition-multimedia</normaloff>:/icons/icon-edition-multimedia</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <property name="minimumSize">
-    <size>
-     <width>800</width>
-     <height>600</height>
-    </size>
-   </property>
-   <layout class="QGridLayout" name="gridLayoutCentralWidget"/>
+   <layout class="QGridLayout" name="gridLayoutCentralWidget">
+    <item row="0" column="0" rowspan="3">
+     <widget class="QGroupBox" name="groupBoxMedia">
+      <property name="title">
+       <string>Media</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayoutMedia">
+       <item row="0" column="0" colspan="8">
+        <widget class="QWidget" name="widgetFrame" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>320</width>
+           <height>240</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelFrameBegin">
+         <property name="text">
+          <string>Image de début</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="spinBoxFrameBegin"/>
+       </item>
+       <item row="1" column="2">
+        <spacer name="horizontalSpacerMediaLeft">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="labelFrameCurrent">
+         <property name="text">
+          <string>Image courante</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QSpinBox" name="spinBoxFrameCurrent"/>
+       </item>
+       <item row="1" column="5">
+        <spacer name="horizontalSpacerMediaRight">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="6">
+        <widget class="QLabel" name="labelFrameEnd">
+         <property name="text">
+          <string>Image de fin</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="7">
+        <widget class="QSpinBox" name="spinBoxFrameEnd"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="groupBoxVideoParameters">
+      <property name="title">
+       <string>Paramètres vidéo</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayoutVideoParameters">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelVideoMethod">
+         <property name="text">
+          <string>Méthode</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="comboBoxVideoMethod">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>Variable</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Constante</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Taille maximale</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelVideoQuality">
+         <property name="text">
+          <string>Qualité</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="comboBoxVideoQuality">
+         <property name="currentIndex">
+          <number>1</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>Haute</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Moyenne</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Basse</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="labelVideoSpeed">
+         <property name="text">
+          <string>Vitesse</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="comboBoxVideoSpeed">
+         <property name="toolTip">
+          <string>+ Lent = traitement lent, optimisation forte, taille réduite.
++ Rapide = traitement rapide, optimisation faible, taille élevée.</string>
+         </property>
+         <property name="currentIndex">
+          <number>3</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>Très lente</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Plus lente</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Lente</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Moyenne</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Rapide</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Plus rapide</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Très rapide</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="labelVideoBitRate">
+         <property name="text">
+          <string>Débit binaire (kbit/s)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="spinBoxVideoBitRate">
+         <property name="maximum">
+          <number>20000</number>
+         </property>
+         <property name="value">
+          <number>1200</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="labelVideoMaxSize">
+         <property name="text">
+          <string>Taille maximale (Mo)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QDoubleSpinBox" name="doubleSpinBoxVideoMaxSize">
+         <property name="decimals">
+          <number>3</number>
+         </property>
+         <property name="maximum">
+          <double>4096.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="labelVideoFramesPerSecond">
+         <property name="text">
+          <string>Images par seconde</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QDoubleSpinBox" name="doubleSpinBoxVideoFramesPerSecond">
+         <property name="decimals">
+          <number>3</number>
+         </property>
+         <property name="minimum">
+          <double>1.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>100.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>30.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QGroupBox" name="groupBoxAudioParameters">
+      <property name="title">
+       <string>Paramètres audio</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayoutAudioParameters">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelAudioMethod">
+         <property name="text">
+          <string>Méthode</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="comboBoxAudioMethod">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>Variable</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Constante</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelAudioBitRate">
+         <property name="text">
+          <string>Débit binaire (kbit/s)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="spinBoxAudioBitRate">
+         <property name="maximum">
+          <number>320</number>
+         </property>
+         <property name="value">
+          <number>128</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>30</height>
+     <width>629</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
