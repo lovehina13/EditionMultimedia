@@ -64,6 +64,27 @@ public:
     bool operator==(const Settings& settings) const;
     bool operator!=(const Settings& settings) const;
 
+    enum videoMethods
+    {
+        VIDEO_METHOD_VARIABLE, VIDEO_METHOD_CONSTANT, VIDEO_METHOD_MAX_SIZE
+    };
+
+    enum videoQualities
+    {
+        VIDEO_QUALITY_HIGH, VIDEO_QUALITY_MEDIUM, VIDEO_QUALITY_LOW
+    };
+
+    enum videoSpeeds
+    {
+        VIDEO_SPEED_VERY_SLOW, VIDEO_SPEED_SLOWER, VIDEO_SPEED_SLOW, VIDEO_SPEED_MEDIUM,
+        VIDEO_SPEED_FAST, VIDEO_SPEED_FASTER, VIDEO_SPEED_VERY_FAST
+    };
+
+    enum audioMethods
+    {
+        AUDIO_METHOD_VARIABLE, AUDIO_METHOD_CONSTANT
+    };
+
 private:
     // Class members
     QString dataFilePath;

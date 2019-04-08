@@ -89,3 +89,14 @@ bool MultimediaFile::operator!=(const MultimediaFile& multimediaFile) const
 {
     return !(this->equals(multimediaFile));
 }
+
+void MultimediaFile::decodeFile()
+{
+    // TODO void MultimediaFile::decodeFile()
+}
+
+void MultimediaFile::encodeFile(const Settings& settings) const
+{
+    // TODO void MultimediaFile::encodeFile(const Settings& settings) const
+    Q_UNUSED(settings);
+}

@@ -8,6 +8,7 @@
 #ifndef MULTIMEDIAFILE_H
 #define MULTIMEDIAFILE_H
 
+#include "Settings.h"
 #include <QChar>
 #include <QList>
 #include <QMap>
@@ -39,6 +40,8 @@ public:
     // Specific methods
     bool operator==(const MultimediaFile& multimediaFile) const;
     bool operator!=(const MultimediaFile& multimediaFile) const;
+    void decodeFile();
+    void encodeFile(const Settings& settings) const;
 
 private:
     // Class members

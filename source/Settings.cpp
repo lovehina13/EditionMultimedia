@@ -9,9 +9,10 @@
 #include <QStringList>
 
 Settings::Settings() :
-        dataFilePath(QString()), multimediaFilePath(QString()), videoMethod(0), videoQuality(0),
-                videoSpeed(0), videoBitRate(0), videoMaxSize(0.0), videoFramesPerSecond(0.0),
-                audioMethod(0), audioBitRate(0)
+        dataFilePath(QString()), multimediaFilePath(QString()), videoMethod(VIDEO_METHOD_VARIABLE),
+                videoQuality(VIDEO_QUALITY_MEDIUM), videoSpeed(VIDEO_SPEED_MEDIUM),
+                videoBitRate(1200), videoMaxSize(0.0), videoFramesPerSecond(30.0),
+                audioMethod(AUDIO_METHOD_VARIABLE), audioBitRate(128)
 {
     this->clear();
 }
@@ -139,7 +140,8 @@ void Settings::setAudioBitRate(const int& audioBitRate)
 
 void Settings::clear()
 {
-    this->set(QString(), QString(), 0, 0, 0, 0, 0.0, 0.0, 0, 0);
+    this->set(QString(), QString(), VIDEO_METHOD_VARIABLE, VIDEO_QUALITY_MEDIUM, VIDEO_SPEED_MEDIUM,
+            1200, 0.0, 30.0, AUDIO_METHOD_VARIABLE, 128);
 }
 
 void Settings::set(const QString& dataFilePath, const QString& multimediaFilePath,

@@ -41,6 +41,10 @@ public:
     const QString toString(const QChar& sep) const;
 
     // Specific methods
+    void loadData(const QString& filePath);
+    void saveData(const QString& filePath);
+    void decodeFile();
+    void encodeFile() const;
 
 private:
     // Class members

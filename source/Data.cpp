@@ -88,3 +88,25 @@ const QString Data::toString(const QChar& sep) const
     Q_UNUSED(sep);
     return QString();
 }
+
+void Data::loadData(const QString& filePath)
+{
+    // TODO void Data::loadData(const QString& filePath)
+    Q_UNUSED(filePath);
+}
+
+void Data::saveData(const QString& filePath)
+{
+    // TODO void Data::saveData(const QString& filePath)
+    Q_UNUSED(filePath);
+}
+
+void Data::decodeFile()
+{
+    // TODO void Data::decodeFile()
+}
+
+void Data::encodeFile() const
+{
+    // TODO void Data::encodeFile() const
+}
