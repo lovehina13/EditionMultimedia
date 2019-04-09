@@ -6,6 +6,8 @@
 //==============================================================================
 
 #include "Data.h"
+#include "Tools.h"
+#include <QStringList>
 
 Data::Data() :
         settings(Settings()), multimediaFile(MultimediaFile())
@@ -91,22 +93,50 @@ const QString Data::toString(const QChar& sep) const
 
 void Data::loadData(const QString& filePath)
 {
-    // TODO void Data::loadData(const QString& filePath)
-    Q_UNUSED(filePath);
+    const QStringList lines = readFileLines(filePath);
+    const int nbLines = lines.count();
+    for (int itLine = 0; itLine < nbLines; itLine++)
+    {
+        const QString& line = lines.at(itLine);
+        if (itLine == 0)
+        {
+            Settings settings = this->getSettings();
+            settings.fromString(line, QChar(';'));
+            this->setSettings(settings);
+        }
+        else
+        {
+            MultimediaFile multimediaFile = this->getMultimediaFile();
+            multimediaFile.fromString(line, QChar(';'));
+            this->setMultimediaFile(multimediaFile);
+        }
+    }
 }
 
 void Data::saveData(const QString& filePath)
 {
-    // TODO void Data::saveData(const QString& filePath)
-    Q_UNUSED(filePath);
+    Settings settings = this->getSettings();
+    settings.setDataFilePath(filePath);
+    this->setSettings(settings);
+
+    const MultimediaFile& multimediaFile = this->getMultimediaFile();
+
+    QStringList lines;
+    lines.append(settings.toString(QChar(';')));
+    lines.append(multimediaFile.toString(QChar(';')));
+    writeFileLines(filePath, lines);
 }
 
 void Data::decodeFile()
 {
-    // TODO void Data::decodeFile()
+    MultimediaFile multimediaFile = this->getMultimediaFile();
+    multimediaFile.decodeFile();
+    this->setMultimediaFile(multimediaFile);
 }
 
 void Data::encodeFile() const
 {
-    // TODO void Data::encodeFile() const
+    const Settings& settings = this->getSettings();
+    const MultimediaFile& multimediaFile = this->getMultimediaFile();
+    multimediaFile.encodeFile(settings);
 }

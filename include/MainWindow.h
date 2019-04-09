@@ -30,6 +30,9 @@ protected:
     void loadExistingData();
     void saveCurrentData();
     void processCurrentData();
+    void updateFrame(const int& frame);
+    void updateLimits(const int& min, const int& max);
+    void updateSettings();
 
 protected slots:
     void on_actionNew_triggered();
