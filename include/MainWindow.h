@@ -30,7 +30,7 @@ protected:
     void loadExistingData();
     void saveCurrentData();
     void processCurrentData();
-    void updateFrame(const int& frame);
+    void updateFrame(const int& time);
     void updateLimits(const int& min, const int& max);
     void updateSettings();
 

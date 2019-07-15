@@ -9,7 +9,9 @@
 #include "ui_MainWindow.h"
 #include "DocumentationWindow.h"
 #include <QFileDialog>
+#include <QImage>
 #include <QMessageBox>
+#include <QPixmap>
 #include <QString>
 
 MainWindow::MainWindow(QWidget* parent) :
@@ -42,8 +44,8 @@ void MainWindow::createNewData()
     multimediaFile.setFilePath(filePath);
     this->data.setMultimediaFile(multimediaFile);
 
-    this->updateLimits(0, 0); // TODO Set values
-    this->updateFrame(0); // TODO Set value
+    this->updateLimits(0, this->data.getMultimediaFile().getDuration() / 10);
+    this->updateFrame(0);
     this->updateSettings();
 }
 
@@ -57,8 +59,8 @@ void MainWindow::loadExistingData()
 
     this->data.loadData(filePath);
 
-    this->updateLimits(0, 0); // TODO Set values
-    this->updateFrame(0); // TODO Set value
+    this->updateLimits(0, this->data.getMultimediaFile().getDuration() / 10);
+    this->updateFrame(0);
     this->updateSettings();
 }
 
@@ -78,10 +80,11 @@ void MainWindow::processCurrentData()
     this->data.encodeFile();
 }
 
-void MainWindow::updateFrame(const int& frame)
+void MainWindow::updateFrame(const int& time)
 {
-    // TODO void MainWindow::updateFrame(const int& frame)
-    Q_UNUSED(frame);
+    const QImage image = this->data.getMultimediaFile().getFrame(time);
+    this->ui->labelFrame->setMinimumSize(image.width(), image.height());
+    this->ui->labelFrame->setPixmap(QPixmap::fromImage(image));
 }
 
 void MainWindow::updateLimits(const int& min, const int& max)
@@ -152,7 +155,7 @@ void MainWindow::on_spinBoxFrameBegin_valueChanged()
 
 void MainWindow::on_spinBoxFrameCurrent_valueChanged()
 {
-    this->updateFrame(this->ui->spinBoxFrameCurrent->value());
+    this->updateFrame(this->ui->spinBoxFrameCurrent->value() * 10);
 }
 
 void MainWindow::on_spinBoxFrameEnd_valueChanged()

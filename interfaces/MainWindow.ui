@@ -26,7 +26,7 @@
       </property>
       <layout class="QGridLayout" name="gridLayoutMedia">
        <item row="0" column="0" colspan="8">
-        <widget class="QWidget" name="widgetFrame" native="true">
+        <widget class="QLabel" name="labelFrame">
          <property name="minimumSize">
           <size>
            <width>320</width>

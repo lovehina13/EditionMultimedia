@@ -10,6 +10,7 @@
 
 #include "Settings.h"
 #include <QChar>
+#include <QImage>
 #include <QList>
 #include <QMap>
 #include <QString>
@@ -42,6 +43,8 @@ public:
     bool operator!=(const MultimediaFile& multimediaFile) const;
     void decodeFile();
     void encodeFile(const Settings& settings) const;
+    int getDuration() const;
+    const QImage getFrame(const int& time) const;
 
 private:
     // Class members
