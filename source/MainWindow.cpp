@@ -109,7 +109,48 @@ void MainWindow::updateLimits(const int& min, const int& max)
 
 void MainWindow::updateSettings()
 {
-    // TODO void MainWindow::updateSettings()
+    const Settings& settings = this->data.getSettings();
+    this->ui->comboBoxVideoMethod->setCurrentIndex(settings.getVideoMethod());
+    this->ui->comboBoxVideoQuality->setCurrentIndex(settings.getVideoQuality());
+    this->ui->comboBoxVideoSpeed->setCurrentIndex(settings.getVideoSpeed());
+    this->ui->spinBoxVideoBitRate->setValue(settings.getVideoBitRate());
+    this->ui->doubleSpinBoxVideoMaxSize->setValue(settings.getVideoMaxSize());
+    this->ui->doubleSpinBoxVideoFramesPerSecond->setValue(settings.getVideoFramesPerSecond());
+    this->ui->comboBoxAudioMethod->setCurrentIndex(settings.getAudioMethod());
+    this->ui->spinBoxAudioBitRate->setValue(settings.getAudioBitRate());
+
+    const int& videoMethod = settings.getVideoMethod();
+    if (videoMethod == Settings::VIDEO_METHOD_VARIABLE)
+    {
+        this->ui->comboBoxVideoQuality->setEnabled(true);
+        this->ui->comboBoxVideoSpeed->setEnabled(true);
+        this->ui->spinBoxVideoBitRate->setEnabled(false);
+        this->ui->doubleSpinBoxVideoMaxSize->setEnabled(false);
+    }
+    else if (videoMethod == Settings::VIDEO_METHOD_CONSTANT)
+    {
+        this->ui->comboBoxVideoQuality->setEnabled(false);
+        this->ui->comboBoxVideoSpeed->setEnabled(false);
+        this->ui->spinBoxVideoBitRate->setEnabled(true);
+        this->ui->doubleSpinBoxVideoMaxSize->setEnabled(false);
+    }
+    else if (videoMethod == Settings::VIDEO_METHOD_MAX_SIZE)
+    {
+        this->ui->comboBoxVideoQuality->setEnabled(false);
+        this->ui->comboBoxVideoSpeed->setEnabled(false);
+        this->ui->spinBoxVideoBitRate->setEnabled(false);
+        this->ui->doubleSpinBoxVideoMaxSize->setEnabled(true);
+    }
+
+    const int& audioMethod = settings.getAudioMethod();
+    if (audioMethod == Settings::AUDIO_METHOD_VARIABLE)
+    {
+        this->ui->spinBoxAudioBitRate->setEnabled(false);
+    }
+    else if (audioMethod == Settings::AUDIO_METHOD_CONSTANT)
+    {
+        this->ui->spinBoxAudioBitRate->setEnabled(true);
+    }
 }
 
 void MainWindow::on_actionNew_triggered()
