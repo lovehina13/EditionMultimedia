@@ -12,6 +12,8 @@
 #include <QStringList>
 
 int executeCommand(const QString& command, const bool& log = false);
+int executeCommand(const QString& command, const QString& outputFilePath,
+        const QString& errorFilePath, const bool& log = false);
 const QStringList readFileLines(const QString& filePath);
 void writeFileLines(const QString& filePath, const QStringList& lines);
 

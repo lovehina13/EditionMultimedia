@@ -24,6 +24,25 @@ int executeCommand(const QString& command, const bool& log)
     return returnCode;
 }
 
+int executeCommand(const QString& command, const QString& outputFilePath,
+        const QString& errorFilePath, const bool& log)
+{
+    QProcess process;
+    process.start(command);
+    process.waitForFinished(-1);
+    const int returnCode = process.exitCode();
+    if (log)
+    {
+        std::cout << "Command: " << command.toStdString() << std::endl;
+        std::cout << "ReturnCode: " << returnCode << std::endl;
+    }
+    const QString output = process.readAllStandardOutput();
+    const QString error = process.readAllStandardError();
+    writeFileLines(outputFilePath, QStringList() << output);
+    writeFileLines(errorFilePath, QStringList() << error);
+    return returnCode;
+}
+
 const QStringList readFileLines(const QString& filePath)
 {
     QStringList lines;

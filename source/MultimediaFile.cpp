@@ -109,9 +109,8 @@ int MultimediaFile::getDuration() const
 
     const QString& inFilePath = this->getFilePath();
     const QString outFilePath = QString("%1.out.txt").arg(inFilePath);
-    const QString command = QString("ffprobe -v error -show_format \"%1\" > \"%2\"").arg(inFilePath,
-            outFilePath);
-    executeCommand(command, true);
+    const QString command = QString("ffprobe -v error -show_format \"%1\"").arg(inFilePath);
+    executeCommand(command, outFilePath, QString(), true);
 
     const QStringList lines = readFileLines(outFilePath);
     const int nbLines = lines.count();
