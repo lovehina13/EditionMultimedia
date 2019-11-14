@@ -237,3 +237,44 @@ bool Settings::operator!=(const Settings& settings) const
 {
     return !(this->equals(settings));
 }
+
+const QString Settings::getVideoQualityToString() const
+{
+    const int& videoQuality = this->getVideoQuality();
+    return QString("-crf %1").arg(
+            QString::number(
+                    (videoQuality == VIDEO_QUALITY_HIGH) ? 18 :
+                    (videoQuality == VIDEO_QUALITY_MEDIUM) ? 23 :
+                    (videoQuality == VIDEO_QUALITY_LOW) ? 28 : 23));
+}
+
+const QString Settings::getVideoSpeedToString() const
+{
+    const int& videoSpeed = this->getVideoSpeed();
+    return QString("-preset %1").arg(
+            (videoSpeed == VIDEO_SPEED_VERY_SLOW) ? QString("veryslow") :
+            (videoSpeed == VIDEO_SPEED_SLOWER) ? QString("slower") :
+            (videoSpeed == VIDEO_SPEED_SLOW) ? QString("slow") :
+            (videoSpeed == VIDEO_SPEED_MEDIUM) ? QString("medium") :
+            (videoSpeed == VIDEO_SPEED_FAST) ? QString("fast") :
+            (videoSpeed == VIDEO_SPEED_FASTER) ? QString("faster") :
+            (videoSpeed == VIDEO_SPEED_VERY_FAST) ? QString("veryfast") : QString("medium"));
+}
+
+const QString Settings::getVideoBitRateToString() const
+{
+    const int& videoBitRate = this->getVideoBitRate();
+    return QString("-b:v %1k").arg(QString::number(videoBitRate));
+}
+
+const QString Settings::getVideoFramesPerSecondToString() const
+{
+    const double& videoFramesPerSecond = this->getVideoFramesPerSecond();
+    return QString("-r %1").arg(QString::number(videoFramesPerSecond));
+}
+
+const QString Settings::getAudioBitRateToString() const
+{
+    const int& audioBitRate = this->getAudioBitRate();
+    return QString("-b:a %1k").arg(QString::number(audioBitRate));
+}

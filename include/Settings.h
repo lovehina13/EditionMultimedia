@@ -63,6 +63,11 @@ public:
     // Specific methods
     bool operator==(const Settings& settings) const;
     bool operator!=(const Settings& settings) const;
+    const QString getVideoQualityToString() const;
+    const QString getVideoSpeedToString() const;
+    const QString getVideoBitRateToString() const;
+    const QString getVideoFramesPerSecondToString() const;
+    const QString getAudioBitRateToString() const;
 
     enum videoMethods
     {
