@@ -8,10 +8,15 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "DocumentationWindow.h"
+#include "MultimediaFile.h"
+#include "Settings.h"
+#include <QComboBox>
 #include <QFileDialog>
 #include <QImage>
+#include <QLabel>
 #include <QMessageBox>
 #include <QPixmap>
+#include <QSpinBox>
 #include <QString>
 
 MainWindow::MainWindow(QWidget* parent) :

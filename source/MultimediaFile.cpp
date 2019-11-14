@@ -125,7 +125,7 @@ int MultimediaFile::getDuration() const
         const QString value = lineItems.join("=");
         if (metadata == QString("duration"))
         {
-            duration = (int) (value.toDouble() * 1000);
+            duration = static_cast<int>(value.toDouble() * 1000.0);
         }
     }
 
@@ -141,7 +141,7 @@ const QImage MultimediaFile::getFrame(const int& time) const
     const QString command =
             QString(
                     "ffmpeg -y -i \"%1\" -frames:v 1 -filter:v \"scale=640:-1, select='eq(t\\,%2)'\" \"%3\"").arg(
-                    inFilePath, QString::number((double) time / 1000.0), outFilePath);
+                    inFilePath, QString::number(static_cast<double>(time) / 1000.0), outFilePath);
     executeCommand(command, true);
 
     return QImage(outFilePath);
