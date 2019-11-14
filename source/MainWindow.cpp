@@ -111,33 +111,34 @@ void MainWindow::updateSettings()
 {
     const Settings& settings = this->data.getSettings();
     this->ui->comboBoxVideoMethod->setCurrentIndex(settings.getVideoMethod());
-    this->ui->comboBoxVideoQuality->setCurrentIndex(settings.getVideoQuality());
     this->ui->comboBoxVideoSpeed->setCurrentIndex(settings.getVideoSpeed());
+    this->ui->comboBoxVideoQuality->setCurrentIndex(settings.getVideoQuality());
     this->ui->spinBoxVideoBitRate->setValue(settings.getVideoBitRate());
     this->ui->doubleSpinBoxVideoMaxSize->setValue(settings.getVideoMaxSize());
     this->ui->doubleSpinBoxVideoFramesPerSecond->setValue(settings.getVideoFramesPerSecond());
     this->ui->comboBoxAudioMethod->setCurrentIndex(settings.getAudioMethod());
+    this->ui->comboBoxAudioQuality->setCurrentIndex(settings.getAudioQuality());
     this->ui->spinBoxAudioBitRate->setValue(settings.getAudioBitRate());
 
     const int& videoMethod = settings.getVideoMethod();
     if (videoMethod == Settings::VIDEO_METHOD_VARIABLE)
     {
-        this->ui->comboBoxVideoQuality->setEnabled(true);
         this->ui->comboBoxVideoSpeed->setEnabled(true);
+        this->ui->comboBoxVideoQuality->setEnabled(true);
         this->ui->spinBoxVideoBitRate->setEnabled(false);
         this->ui->doubleSpinBoxVideoMaxSize->setEnabled(false);
     }
     else if (videoMethod == Settings::VIDEO_METHOD_CONSTANT)
     {
+        this->ui->comboBoxVideoSpeed->setEnabled(true);
         this->ui->comboBoxVideoQuality->setEnabled(false);
-        this->ui->comboBoxVideoSpeed->setEnabled(false);
         this->ui->spinBoxVideoBitRate->setEnabled(true);
         this->ui->doubleSpinBoxVideoMaxSize->setEnabled(false);
     }
     else if (videoMethod == Settings::VIDEO_METHOD_MAX_SIZE)
     {
-        this->ui->comboBoxVideoQuality->setEnabled(false);
         this->ui->comboBoxVideoSpeed->setEnabled(false);
+        this->ui->comboBoxVideoQuality->setEnabled(false);
         this->ui->spinBoxVideoBitRate->setEnabled(false);
         this->ui->doubleSpinBoxVideoMaxSize->setEnabled(true);
     }
@@ -145,10 +146,12 @@ void MainWindow::updateSettings()
     const int& audioMethod = settings.getAudioMethod();
     if (audioMethod == Settings::AUDIO_METHOD_VARIABLE)
     {
+        this->ui->comboBoxAudioQuality->setEnabled(true);
         this->ui->spinBoxAudioBitRate->setEnabled(false);
     }
     else if (audioMethod == Settings::AUDIO_METHOD_CONSTANT)
     {
+        this->ui->comboBoxAudioQuality->setEnabled(false);
         this->ui->spinBoxAudioBitRate->setEnabled(true);
     }
 }
@@ -218,17 +221,17 @@ void MainWindow::on_comboBoxVideoMethod_currentIndexChanged()
     this->updateSettings();
 }
 
-void MainWindow::on_comboBoxVideoQuality_currentIndexChanged()
-{
-    Settings settings = this->data.getSettings();
-    settings.setVideoQuality(this->ui->comboBoxVideoQuality->currentIndex());
-    this->data.setSettings(settings);
-}
-
 void MainWindow::on_comboBoxVideoSpeed_currentIndexChanged()
 {
     Settings settings = this->data.getSettings();
     settings.setVideoSpeed(this->ui->comboBoxVideoSpeed->currentIndex());
+    this->data.setSettings(settings);
+}
+
+void MainWindow::on_comboBoxVideoQuality_currentIndexChanged()
+{
+    Settings settings = this->data.getSettings();
+    settings.setVideoQuality(this->ui->comboBoxVideoQuality->currentIndex());
     this->data.setSettings(settings);
 }
 
@@ -260,6 +263,13 @@ void MainWindow::on_comboBoxAudioMethod_currentIndexChanged()
     this->data.setSettings(settings);
 
     this->updateSettings();
+}
+
+void MainWindow::on_comboBoxAudioQuality_currentIndexChanged()
+{
+    Settings settings = this->data.getSettings();
+    settings.setAudioQuality(this->ui->comboBoxAudioQuality->currentIndex());
+    this->data.setSettings(settings);
 }
 
 void MainWindow::on_spinBoxAudioBitRate_valueChanged()

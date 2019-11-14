@@ -46,12 +46,13 @@ protected slots:
     void on_spinBoxFrameCurrent_valueChanged();
     void on_spinBoxFrameEnd_valueChanged();
     void on_comboBoxVideoMethod_currentIndexChanged();
-    void on_comboBoxVideoQuality_currentIndexChanged();
     void on_comboBoxVideoSpeed_currentIndexChanged();
+    void on_comboBoxVideoQuality_currentIndexChanged();
     void on_spinBoxVideoBitRate_valueChanged();
     void on_doubleSpinBoxVideoMaxSize_valueChanged();
     void on_doubleSpinBoxVideoFramesPerSecond_valueChanged();
     void on_comboBoxAudioMethod_currentIndexChanged();
+    void on_comboBoxAudioQuality_currentIndexChanged();
     void on_spinBoxAudioBitRate_valueChanged();
 
 private:
