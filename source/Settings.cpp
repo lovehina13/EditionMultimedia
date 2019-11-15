@@ -7,6 +7,7 @@
 
 #include "Settings.h"
 #include <QStringList>
+#include <cmath>
 
 Settings::Settings() :
         dataFilePath(QString()), multimediaFilePath(QString()), videoMethod(VIDEO_METHOD_VARIABLE),
@@ -299,4 +300,51 @@ const QString Settings::getAudioBitRateToString() const
 {
     const int& audioBitRate = this->getAudioBitRate();
     return QString("-b:a %1k").arg(QString::number(audioBitRate));
+}
+
+const QString Settings::getVideoSettings(const int& duration) const
+{
+    const int& videoMethod = this->getVideoMethod();
+    const QString videoSpeed = this->getVideoSpeedToString();
+    const QString videoQuality = this->getVideoQualityToString();
+    const QString videoBitRate = this->getVideoBitRateToString();
+    const QString videoFramesPerSecond = this->getVideoFramesPerSecondToString();
+
+    if (videoMethod == VIDEO_METHOD_MAX_SIZE)
+    {
+        const double& videoMaxSize = this->getVideoMaxSize();
+        const int& audioBitRate = this->getAudioBitRate();
+
+        const double totalTime = static_cast<double>(duration) / 1000.0;
+        const int totalBitRate = static_cast<int>(floor(videoMaxSize * 8192.0 / totalTime));
+        const int videoBitRateLocal = totalBitRate - audioBitRate;
+
+        const Settings videoBitRateSettings = Settings(QString(), QString(), 0, 0, 0,
+                videoBitRateLocal, 0.0, 0.0, 0, 0, 0);
+        const QString videoBitRateUpdate = videoBitRateSettings.getVideoBitRateToString();
+        const_cast<QString&>(videoBitRate) = videoBitRateUpdate;
+    }
+
+    const QString videoSet = ((videoMethod == VIDEO_METHOD_VARIABLE) ? videoQuality : videoBitRate);
+    const QString videoSettings = QString("-c:v libx264 %1 %2 %3").arg(videoSpeed, videoSet,
+            videoFramesPerSecond);
+
+    return videoSettings;
+}
+
+const QString Settings::getAudioSettings() const
+{
+    const int& audioMethod = this->getAudioMethod();
+    const QString audioQuality = this->getAudioQualityToString();
+    const QString audioBitRate = this->getAudioBitRateToString();
+
+    const QString audioSet = ((audioMethod == AUDIO_METHOD_VARIABLE) ? audioQuality : audioBitRate);
+    const QString audioSettings = QString("-c:a aac %1").arg(audioSet);
+
+    return audioSettings;
+}
+
+const QString Settings::getMetadataSettings() const
+{
+    return QString("-map_metadata -1");
 }

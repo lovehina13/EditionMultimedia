@@ -71,6 +71,9 @@ public:
     const QString getVideoFramesPerSecondToString() const;
     const QString getAudioQualityToString() const;
     const QString getAudioBitRateToString() const;
+    const QString getVideoSettings(const int& duration) const;
+    const QString getAudioSettings() const;
+    const QString getMetadataSettings() const;
 
     enum videoMethods
     {

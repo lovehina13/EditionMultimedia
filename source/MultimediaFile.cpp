@@ -99,8 +99,32 @@ void MultimediaFile::decodeFile()
 
 void MultimediaFile::encodeFile(const Settings& settings) const
 {
-    // TODO void MultimediaFile::encodeFile(const Settings& settings) const
-    Q_UNUSED(settings);
+    const int duration = this->getDuration();
+    const QString videoSettings = settings.getVideoSettings(duration);
+    const QString audioSettings = settings.getAudioSettings();
+    const QString metadataSettings = settings.getMetadataSettings();
+
+    const int& videoMethod = settings.getVideoMethod();
+    const bool videoMethodVariable = (videoMethod == Settings::VIDEO_METHOD_VARIABLE);
+    const QString& inFilePath = this->getFilePath();
+    const QString outFilePath = QString("%1_out.mp4").arg(inFilePath);
+
+    if (videoMethodVariable)
+    {
+        const QString command = QString("ffmpeg -y -i %1 %2 %3 %4 %5").arg(inFilePath,
+                metadataSettings, videoSettings, audioSettings, outFilePath);
+        executeCommand(command, true);
+    }
+    else
+    {
+        const QString commandFirstPass =
+                QString("ffmpeg -y -i %1 %2 -pass 1 -an -f mp4 /dev/null").arg(inFilePath,
+                        videoSettings);
+        const QString commandSecondPass = QString("ffmpeg -y -i %1 %2 %3 -pass 2 %4 %5").arg(
+                inFilePath, metadataSettings, videoSettings, audioSettings, outFilePath);
+        executeCommand(commandFirstPass, true);
+        executeCommand(commandSecondPass, true);
+    }
 }
 
 int MultimediaFile::getDuration() const
@@ -108,7 +132,7 @@ int MultimediaFile::getDuration() const
     int duration = 0;
 
     const QString& inFilePath = this->getFilePath();
-    const QString outFilePath = QString("%1.out.txt").arg(inFilePath);
+    const QString outFilePath = QString("%1_out.txt").arg(inFilePath);
     const QString command = QString("ffprobe -v error -show_format \"%1\"").arg(inFilePath);
     executeCommand(command, outFilePath, QString(), true);
 
