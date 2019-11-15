@@ -99,9 +99,9 @@ void MultimediaFile::decodeFile()
 
 void MultimediaFile::encodeFile(const Settings& settings) const
 {
-    const int duration = this->getDuration();
-    const QString videoSettings = settings.getVideoSettings(duration);
+    const QString videoSettings = settings.getVideoSettings();
     const QString audioSettings = settings.getAudioSettings();
+    const QString timeSettings = settings.getTimeSettings();
     const QString metadataSettings = settings.getMetadataSettings();
 
     const int& videoMethod = settings.getVideoMethod();
@@ -111,8 +111,8 @@ void MultimediaFile::encodeFile(const Settings& settings) const
 
     if (videoMethodVariable)
     {
-        const QString command = QString("ffmpeg -y -i %1 %2 %3 %4 %5").arg(inFilePath,
-                metadataSettings, videoSettings, audioSettings, outFilePath);
+        const QString command = QString("ffmpeg -y -i %1 %2 %3 %4 %5 %6").arg(inFilePath,
+                metadataSettings, timeSettings, videoSettings, audioSettings, outFilePath);
         executeCommand(command, true);
     }
     else
@@ -120,8 +120,9 @@ void MultimediaFile::encodeFile(const Settings& settings) const
         const QString commandFirstPass =
                 QString("ffmpeg -y -i %1 %2 -pass 1 -an -f mp4 /dev/null").arg(inFilePath,
                         videoSettings);
-        const QString commandSecondPass = QString("ffmpeg -y -i %1 %2 %3 -pass 2 %4 %5").arg(
-                inFilePath, metadataSettings, videoSettings, audioSettings, outFilePath);
+        const QString commandSecondPass = QString("ffmpeg -y -i %1 %2 %3 %4 -pass 2 %5 %6").arg(
+                inFilePath, metadataSettings, timeSettings, videoSettings, audioSettings,
+                outFilePath);
         executeCommand(commandFirstPass, true);
         executeCommand(commandSecondPass, true);
     }

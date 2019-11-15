@@ -21,7 +21,8 @@ public:
     Settings(const QString& dataFilePath, const QString& multimediaFilePath, const int& videoMethod,
             const int& videoSpeed, const int& videoQuality, const int& videoBitRate,
             const double& videoMaxSize, const double& videoFramesPerSecond, const int& audioMethod,
-            const int& audioQuality, const int& audioBitRate);
+            const int& audioQuality, const int& audioBitRate, const int& fromTime,
+            const int& toTime);
     Settings(const Settings& settings);
     virtual ~Settings();
 
@@ -37,6 +38,8 @@ public:
     const int& getAudioMethod() const;
     const int& getAudioQuality() const;
     const int& getAudioBitRate() const;
+    const int& getFromTime() const;
+    const int& getToTime() const;
 
     // Setters
     void setDataFilePath(const QString& dataFilePath);
@@ -50,13 +53,16 @@ public:
     void setAudioMethod(const int& audioMethod);
     void setAudioQuality(const int& audioQuality);
     void setAudioBitRate(const int& audioBitRate);
+    void setFromTime(const int& fromTime);
+    void setToTime(const int& toTime);
 
     // Generic methods
     void clear();
     void set(const QString& dataFilePath, const QString& multimediaFilePath, const int& videoMethod,
             const int& videoSpeed, const int& videoQuality, const int& videoBitRate,
             const double& videoMaxSize, const double& videoFramesPerSecond, const int& audioMethod,
-            const int& audioQuality, const int& audioBitRate);
+            const int& audioQuality, const int& audioBitRate, const int& fromTime,
+            const int& toTime);
     void copy(const Settings& settings);
     bool equals(const Settings& settings) const;
     void fromString(const QString& fromString, const QChar& sep);
@@ -71,8 +77,9 @@ public:
     const QString getVideoFramesPerSecondToString() const;
     const QString getAudioQualityToString() const;
     const QString getAudioBitRateToString() const;
-    const QString getVideoSettings(const int& duration) const;
+    const QString getVideoSettings() const;
     const QString getAudioSettings() const;
+    const QString getTimeSettings() const;
     const QString getMetadataSettings() const;
 
     enum videoMethods
@@ -115,6 +122,8 @@ private:
     int audioMethod;
     int audioQuality;
     int audioBitRate;
+    int fromTime;
+    int toTime;
 };
 
 typedef Settings* SettingsPtr;

@@ -199,6 +199,10 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_spinBoxFrameBegin_valueChanged()
 {
+    Settings settings = this->data.getSettings();
+    settings.setFromTime(this->ui->spinBoxFrameBegin->value() * 10);
+    this->data.setSettings(settings);
+
     this->ui->spinBoxFrameCurrent->setValue(this->ui->spinBoxFrameBegin->value());
 }
 
@@ -209,6 +213,10 @@ void MainWindow::on_spinBoxFrameCurrent_valueChanged()
 
 void MainWindow::on_spinBoxFrameEnd_valueChanged()
 {
+    Settings settings = this->data.getSettings();
+    settings.setToTime(this->ui->spinBoxFrameEnd->value() * 10);
+    this->data.setSettings(settings);
+
     this->ui->spinBoxFrameCurrent->setValue(this->ui->spinBoxFrameEnd->value());
 }
 
