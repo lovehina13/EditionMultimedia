@@ -1,7 +1,7 @@
 //==============================================================================
 // Name        : EditionMultimedia.cpp
 // Author      : Alexis Foerster (alexis.foerster@gmail.com)
-// Version     : 1.0.0 (05/04/2019)
+// Version     : 1.0.0 (03/03/2020)
 // Description : Main file of the EditionMultimedia project
 //==============================================================================
 
