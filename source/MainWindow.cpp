@@ -36,7 +36,7 @@ MainWindow::~MainWindow()
 void MainWindow::createNewData()
 {
     const QString filePath = QFileDialog::getOpenFileName(this,
-            QString::fromUtf8("Sélection d'un fichier multimedia"), 0,
+            QString::fromUtf8("Sélection d'un fichier multimedia"), nullptr,
             QString::fromUtf8("Fichier multimedia (*.avi *.mkv *.mov *.mp4 *.mpeg *.mpg *.wmv)"));
     if (filePath.isEmpty())
         return;
@@ -57,7 +57,7 @@ void MainWindow::createNewData()
 void MainWindow::loadExistingData()
 {
     const QString filePath = QFileDialog::getOpenFileName(this,
-            QString::fromUtf8("Sélection d'un fichier d'édition multimedia"), 0,
+            QString::fromUtf8("Sélection d'un fichier d'édition multimedia"), nullptr,
             QString::fromUtf8("Fichier d'édition multimedia (*.csv)"));
     if (filePath.isEmpty())
         return;
@@ -72,7 +72,7 @@ void MainWindow::loadExistingData()
 void MainWindow::saveCurrentData()
 {
     const QString filePath = QFileDialog::getSaveFileName(this,
-            QString::fromUtf8("Sélection d'un fichier d'édition multimedia"), 0,
+            QString::fromUtf8("Sélection d'un fichier d'édition multimedia"), nullptr,
             QString::fromUtf8("Fichier d'édition multimedia (*.csv)"));
     if (filePath.isEmpty())
         return;
