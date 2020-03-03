@@ -24,6 +24,11 @@ public:
     MultimediaFile(const MultimediaFile& multimediaFile);
     virtual ~MultimediaFile();
 
+    // Operators
+    MultimediaFile& operator=(const MultimediaFile& multimediaFile);
+    bool operator==(const MultimediaFile& multimediaFile) const;
+    bool operator!=(const MultimediaFile& multimediaFile) const;
+
     // Getters
     const QString& getFilePath() const;
 
@@ -39,8 +44,6 @@ public:
     const QString toString(const QChar& sep) const;
 
     // Specific methods
-    bool operator==(const MultimediaFile& multimediaFile) const;
-    bool operator!=(const MultimediaFile& multimediaFile) const;
     void decodeFile();
     void encodeFile(const Settings& settings) const;
     int getDuration() const;

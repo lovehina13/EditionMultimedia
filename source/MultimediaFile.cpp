@@ -33,6 +33,22 @@ MultimediaFile::~MultimediaFile()
 
 }
 
+MultimediaFile& MultimediaFile::operator=(const MultimediaFile& multimediaFile)
+{
+    this->copy(multimediaFile);
+    return *this;
+}
+
+bool MultimediaFile::operator==(const MultimediaFile& multimediaFile) const
+{
+    return this->equals(multimediaFile);
+}
+
+bool MultimediaFile::operator!=(const MultimediaFile& multimediaFile) const
+{
+    return !this->equals(multimediaFile);
+}
+
 const QString& MultimediaFile::getFilePath() const
 {
     return this->filePath;
@@ -80,16 +96,6 @@ const QString MultimediaFile::toString(const QChar& sep) const
     QString toString;
     toString += this->getFilePath();
     return toString;
-}
-
-bool MultimediaFile::operator==(const MultimediaFile& multimediaFile) const
-{
-    return this->equals(multimediaFile);
-}
-
-bool MultimediaFile::operator!=(const MultimediaFile& multimediaFile) const
-{
-    return !(this->equals(multimediaFile));
 }
 
 void MultimediaFile::decodeFile()

@@ -42,6 +42,22 @@ Settings::~Settings()
 
 }
 
+Settings& Settings::operator=(const Settings& settings)
+{
+    this->copy(settings);
+    return *this;
+}
+
+bool Settings::operator==(const Settings& settings) const
+{
+    return this->equals(settings);
+}
+
+bool Settings::operator!=(const Settings& settings) const
+{
+    return !this->equals(settings);
+}
+
 const QString& Settings::getDataFilePath() const
 {
     return this->dataFilePath;
@@ -277,16 +293,6 @@ const QString Settings::toString(const QChar& sep) const
     toString += QString::number(this->getFromTime()) + sep;
     toString += QString::number(this->getToTime());
     return toString;
-}
-
-bool Settings::operator==(const Settings& settings) const
-{
-    return this->equals(settings);
-}
-
-bool Settings::operator!=(const Settings& settings) const
-{
-    return !(this->equals(settings));
 }
 
 const QString Settings::getVideoSpeedToString() const

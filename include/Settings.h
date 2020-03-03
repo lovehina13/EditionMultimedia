@@ -26,6 +26,11 @@ public:
     Settings(const Settings& settings);
     virtual ~Settings();
 
+    // Operators
+    Settings& operator=(const Settings& settings);
+    bool operator==(const Settings& settings) const;
+    bool operator!=(const Settings& settings) const;
+
     // Getters
     const QString& getDataFilePath() const;
     const QString& getMultimediaFilePath() const;
@@ -69,8 +74,6 @@ public:
     const QString toString(const QChar& sep) const;
 
     // Specific methods
-    bool operator==(const Settings& settings) const;
-    bool operator!=(const Settings& settings) const;
     const QString getVideoSpeedToString() const;
     const QString getVideoQualityToString() const;
     const QString getVideoBitRateToString() const;
