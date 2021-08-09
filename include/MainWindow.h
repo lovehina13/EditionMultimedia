@@ -23,7 +23,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget* parent = nullptr);
-    virtual ~MainWindow();
+    virtual ~MainWindow() override;
 
 protected:
     void createNewData();

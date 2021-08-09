@@ -91,7 +91,8 @@ void MultimediaFile::fromString(const QString& fromString, const QChar& sep)
 
 const QString MultimediaFile::toString(const QChar& sep) const
 {
-    Q_UNUSED(sep); // TODO Remove
+    Q_UNUSED(sep)
+    // TODO Remove
 
     QString toString;
     toString += getFilePath();
@@ -117,20 +118,21 @@ void MultimediaFile::encodeFile(const Settings& settings) const
 
     if (videoMethodVariable)
     {
-        const QString command = QString("ffmpeg -y -i %1 %2 %3 %4 %5 %6").arg(inFilePath,
+        const QString program = QString("ffmpeg");
+        const QString arguments = QString("-y -i %1 %2 %3 %4 %5 %6").arg(inFilePath,
                 metadataSettings, timeSettings, videoSettings, audioSettings, outFilePath);
-        executeCommand(command, true);
+        executeCommand(program, arguments.split(" "), true);
     }
     else
     {
-        const QString commandFirstPass =
-                QString("ffmpeg -y -i %1 %2 -pass 1 -an -f mp4 /dev/null").arg(inFilePath,
-                        videoSettings);
-        const QString commandSecondPass = QString("ffmpeg -y -i %1 %2 %3 %4 -pass 2 %5 %6").arg(
+        const QString program = QString("ffmpeg");
+        const QString argumentsFirstPass = QString("-y -i %1 %2 -pass 1 -an -f mp4 /dev/null").arg(
+                inFilePath, videoSettings);
+        const QString argumentsSecondPass = QString("-y -i %1 %2 %3 %4 -pass 2 %5 %6").arg(
                 inFilePath, metadataSettings, timeSettings, videoSettings, audioSettings,
                 outFilePath);
-        executeCommand(commandFirstPass, true);
-        executeCommand(commandSecondPass, true);
+        executeCommand(program, argumentsFirstPass.split(" "), true);
+        executeCommand(program, argumentsSecondPass.split(" "), true);
     }
 }
 
@@ -140,8 +142,9 @@ int MultimediaFile::getDuration() const
 
     const QString& inFilePath = getFilePath();
     const QString outFilePath = QString("%1_out.txt").arg(inFilePath);
-    const QString command = QString("ffprobe -v error -show_format \"%1\"").arg(inFilePath);
-    executeCommand(command, outFilePath, QString(), true);
+    const QString program = QString("ffprobe");
+    const QString arguments = QString("-v error -show_format \"%1\"").arg(inFilePath);
+    executeCommand(program, arguments.split(" "), outFilePath, QString(), true);
 
     const QStringList lines = readFileLines(outFilePath);
     const int nbLines = lines.count();
@@ -168,11 +171,11 @@ const QImage MultimediaFile::getFrame(const int& time) const
 {
     const QString& inFilePath = getFilePath();
     const QString outFilePath = QString("%1_out.png").arg(inFilePath);
-    const QString command =
-            QString(
-                    "ffmpeg -y -i \"%1\" -frames:v 1 -filter:v \"scale=640:-1, select='eq(t\\,%2)'\" \"%3\"").arg(
-                    inFilePath, QString::number(static_cast<double>(time) / 1000.0), outFilePath);
-    executeCommand(command, true);
+    const QString program = QString("ffmpeg");
+    const QString arguments = QString(
+            "-y -i \"%1\" -frames:v 1 -filter:v \"scale=640:-1, select='eq(t\\,%2)'\" \"%3\"").arg(
+            inFilePath, QString::number(static_cast<double>(time) / 1000.0), outFilePath);
+    executeCommand(program, arguments.split(" "), true);
 
     return QImage(outFilePath);
 }

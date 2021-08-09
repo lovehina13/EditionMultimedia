@@ -12,28 +12,30 @@
 #include <QTextStream>
 #include <iostream>
 
-int executeCommand(const QString& command, const bool& log)
+int executeCommand(const QString& program, const QStringList& arguments, const bool& log)
 {
     QProcess process;
-    const int returnCode = process.execute(command);
+    const int returnCode = process.execute(program, arguments);
     if (log)
     {
-        std::cout << "Command: " << command.toStdString() << std::endl;
+        std::cout << "Command: " << program.toStdString() << " "
+                << arguments.join(" ").toStdString() << std::endl;
         std::cout << "ReturnCode: " << returnCode << std::endl;
     }
     return returnCode;
 }
 
-int executeCommand(const QString& command, const QString& outputFilePath,
-        const QString& errorFilePath, const bool& log)
+int executeCommand(const QString& program, const QStringList& arguments,
+        const QString& outputFilePath, const QString& errorFilePath, const bool& log)
 {
     QProcess process;
-    process.start(command);
+    process.start(program, arguments);
     process.waitForFinished(-1);
     const int returnCode = process.exitCode();
     if (log)
     {
-        std::cout << "Command: " << command.toStdString() << std::endl;
+        std::cout << "Command: " << program.toStdString() << " "
+                << arguments.join(" ").toStdString() << std::endl;
         std::cout << "ReturnCode: " << returnCode << std::endl;
     }
     const QString output = process.readAllStandardOutput();
@@ -70,7 +72,7 @@ void writeFileLines(const QString& filePath, const QStringList& lines)
         for (int itLine = 0; itLine < nbLines; itLine++)
         {
             const QString& line = lines.at(itLine);
-            stream << line << endl;
+            stream << line << Qt::endl;
         }
         file.close();
     }
