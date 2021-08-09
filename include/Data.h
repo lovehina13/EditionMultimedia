@@ -53,8 +53,8 @@ public:
 
 private:
     // Class members
-    Settings settings;
-    MultimediaFile multimediaFile;
+    Settings _settings;
+    MultimediaFile _multimediaFile;
 };
 
 typedef Data* DataPtr;

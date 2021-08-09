@@ -11,21 +11,21 @@
 #include <QStringList>
 
 MultimediaFile::MultimediaFile() :
-        filePath(QString())
+        _filePath(QString())
 {
-    this->clear();
+    clear();
 }
 
 MultimediaFile::MultimediaFile(const QString& filePath) :
         MultimediaFile()
 {
-    this->set(filePath);
+    set(filePath);
 }
 
 MultimediaFile::MultimediaFile(const MultimediaFile& multimediaFile) :
         MultimediaFile()
 {
-    this->copy(multimediaFile);
+    copy(multimediaFile);
 }
 
 MultimediaFile::~MultimediaFile()
@@ -35,48 +35,48 @@ MultimediaFile::~MultimediaFile()
 
 MultimediaFile& MultimediaFile::operator=(const MultimediaFile& multimediaFile)
 {
-    this->copy(multimediaFile);
+    copy(multimediaFile);
     return *this;
 }
 
 bool MultimediaFile::operator==(const MultimediaFile& multimediaFile) const
 {
-    return this->equals(multimediaFile);
+    return equals(multimediaFile);
 }
 
 bool MultimediaFile::operator!=(const MultimediaFile& multimediaFile) const
 {
-    return !this->equals(multimediaFile);
+    return !equals(multimediaFile);
 }
 
 const QString& MultimediaFile::getFilePath() const
 {
-    return this->filePath;
+    return _filePath;
 }
 
 void MultimediaFile::setFilePath(const QString& filePath)
 {
-    this->filePath = filePath;
+    _filePath = filePath;
 }
 
 void MultimediaFile::clear()
 {
-    this->set(QString());
+    set(QString());
 }
 
 void MultimediaFile::set(const QString& filePath)
 {
-    this->setFilePath(filePath);
+    setFilePath(filePath);
 }
 
 void MultimediaFile::copy(const MultimediaFile& multimediaFile)
 {
-    this->set(multimediaFile.getFilePath());
+    set(multimediaFile.getFilePath());
 }
 
 bool MultimediaFile::equals(const MultimediaFile& multimediaFile) const
 {
-    if (this->getFilePath() != multimediaFile.getFilePath())
+    if (getFilePath() != multimediaFile.getFilePath())
         return false;
     return true;
 }
@@ -86,7 +86,7 @@ void MultimediaFile::fromString(const QString& fromString, const QChar& sep)
     const QStringList fromStringList = fromString.split(sep);
     if (fromStringList.count() < 1)
         return;
-    this->setFilePath(fromStringList.at(0));
+    setFilePath(fromStringList.at(0));
 }
 
 const QString MultimediaFile::toString(const QChar& sep) const
@@ -94,7 +94,7 @@ const QString MultimediaFile::toString(const QChar& sep) const
     Q_UNUSED(sep); // TODO Remove
 
     QString toString;
-    toString += this->getFilePath();
+    toString += getFilePath();
     return toString;
 }
 
@@ -112,7 +112,7 @@ void MultimediaFile::encodeFile(const Settings& settings) const
 
     const int& videoMethod = settings.getVideoMethod();
     const bool videoMethodVariable = (videoMethod == Settings::VIDEO_METHOD_VARIABLE);
-    const QString& inFilePath = this->getFilePath();
+    const QString& inFilePath = getFilePath();
     const QString outFilePath = QString("%1_out.mp4").arg(inFilePath);
 
     if (videoMethodVariable)
@@ -138,7 +138,7 @@ int MultimediaFile::getDuration() const
 {
     int duration = 0;
 
-    const QString& inFilePath = this->getFilePath();
+    const QString& inFilePath = getFilePath();
     const QString outFilePath = QString("%1_out.txt").arg(inFilePath);
     const QString command = QString("ffprobe -v error -show_format \"%1\"").arg(inFilePath);
     executeCommand(command, outFilePath, QString(), true);
@@ -166,7 +166,7 @@ int MultimediaFile::getDuration() const
 
 const QImage MultimediaFile::getFrame(const int& time) const
 {
-    const QString& inFilePath = this->getFilePath();
+    const QString& inFilePath = getFilePath();
     const QString outFilePath = QString("%1_out.png").arg(inFilePath);
     const QString command =
             QString(

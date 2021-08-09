@@ -56,8 +56,8 @@ protected slots:
     void on_spinBoxAudioBitRate_valueChanged();
 
 private:
-    Ui::MainWindow* ui;
-    Data data;
+    Ui::MainWindow* _ui;
+    Data _data;
 };
 
 #endif /* MAINWINDOW_H */

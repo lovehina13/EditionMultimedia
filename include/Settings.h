@@ -114,19 +114,19 @@ public:
 
 private:
     // Class members
-    QString dataFilePath;
-    QString multimediaFilePath;
-    int videoMethod;
-    int videoSpeed;
-    int videoQuality;
-    int videoBitRate;
-    double videoMaxSize;
-    double videoFramesPerSecond;
-    int audioMethod;
-    int audioQuality;
-    int audioBitRate;
-    int fromTime;
-    int toTime;
+    QString _dataFilePath;
+    QString _multimediaFilePath;
+    int _videoMethod;
+    int _videoSpeed;
+    int _videoQuality;
+    int _videoBitRate;
+    double _videoMaxSize;
+    double _videoFramesPerSecond;
+    int _audioMethod;
+    int _audioQuality;
+    int _audioBitRate;
+    int _fromTime;
+    int _toTime;
 };
 
 typedef Settings* SettingsPtr;

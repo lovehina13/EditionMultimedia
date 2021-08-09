@@ -10,21 +10,21 @@
 #include <QStringList>
 
 Data::Data() :
-        settings(Settings()), multimediaFile(MultimediaFile())
+        _settings(Settings()), _multimediaFile(MultimediaFile())
 {
-    this->clear();
+    clear();
 }
 
 Data::Data(const Settings& settings, const MultimediaFile& multimediaFile) :
         Data()
 {
-    this->set(settings, multimediaFile);
+    set(settings, multimediaFile);
 }
 
 Data::Data(const Data& data) :
         Data()
 {
-    this->copy(data);
+    copy(data);
 }
 
 Data::~Data()
@@ -34,61 +34,61 @@ Data::~Data()
 
 Data& Data::operator=(const Data& data)
 {
-    this->copy(data);
+    copy(data);
     return *this;
 }
 
 bool Data::operator==(const Data& data) const
 {
-    return this->equals(data);
+    return equals(data);
 }
 
 bool Data::operator!=(const Data& data) const
 {
-    return !this->equals(data);
+    return !equals(data);
 }
 
 const Settings& Data::getSettings() const
 {
-    return this->settings;
+    return _settings;
 }
 
 const MultimediaFile& Data::getMultimediaFile() const
 {
-    return this->multimediaFile;
+    return _multimediaFile;
 }
 
 void Data::setSettings(const Settings& settings)
 {
-    this->settings = settings;
+    _settings = settings;
 }
 
 void Data::setMultimediaFile(const MultimediaFile& multimediaFile)
 {
-    this->multimediaFile = multimediaFile;
+    _multimediaFile = multimediaFile;
 }
 
 void Data::clear()
 {
-    this->set(Settings(), MultimediaFile());
+    set(Settings(), MultimediaFile());
 }
 
 void Data::set(const Settings& settings, const MultimediaFile& multimediaFile)
 {
-    this->setSettings(settings);
-    this->setMultimediaFile(multimediaFile);
+    setSettings(settings);
+    setMultimediaFile(multimediaFile);
 }
 
 void Data::copy(const Data& data)
 {
-    this->set(data.getSettings(), data.getMultimediaFile());
+    set(data.getSettings(), data.getMultimediaFile());
 }
 
 bool Data::equals(const Data& data) const
 {
-    if (this->getSettings() != data.getSettings())
+    if (getSettings() != data.getSettings())
         return false;
-    if (this->getMultimediaFile() != data.getMultimediaFile())
+    if (getMultimediaFile() != data.getMultimediaFile())
         return false;
     return true;
 }
@@ -116,26 +116,26 @@ void Data::loadData(const QString& filePath)
         const QString& line = lines.at(itLine);
         if (itLine == 0)
         {
-            Settings settings = this->getSettings();
+            Settings settings = getSettings();
             settings.fromString(line, QChar(';'));
-            this->setSettings(settings);
+            setSettings(settings);
         }
         else
         {
-            MultimediaFile multimediaFile = this->getMultimediaFile();
+            MultimediaFile multimediaFile = getMultimediaFile();
             multimediaFile.fromString(line, QChar(';'));
-            this->setMultimediaFile(multimediaFile);
+            setMultimediaFile(multimediaFile);
         }
     }
 }
 
 void Data::saveData(const QString& filePath)
 {
-    Settings settings = this->getSettings();
+    Settings settings = getSettings();
     settings.setDataFilePath(filePath);
-    this->setSettings(settings);
+    setSettings(settings);
 
-    const MultimediaFile& multimediaFile = this->getMultimediaFile();
+    const MultimediaFile& multimediaFile = getMultimediaFile();
 
     QStringList lines;
     lines.append(settings.toString(QChar(';')));
@@ -145,14 +145,14 @@ void Data::saveData(const QString& filePath)
 
 void Data::decodeFile()
 {
-    MultimediaFile multimediaFile = this->getMultimediaFile();
+    MultimediaFile multimediaFile = getMultimediaFile();
     multimediaFile.decodeFile();
-    this->setMultimediaFile(multimediaFile);
+    setMultimediaFile(multimediaFile);
 }
 
 void Data::encodeFile() const
 {
-    const Settings& settings = this->getSettings();
-    const MultimediaFile& multimediaFile = this->getMultimediaFile();
+    const Settings& settings = getSettings();
+    const MultimediaFile& multimediaFile = getMultimediaFile();
     multimediaFile.encodeFile(settings);
 }

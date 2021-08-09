@@ -51,7 +51,7 @@ public:
 
 private:
     // Class members
-    QString filePath;
+    QString _filePath;
 };
 
 typedef MultimediaFile* MultimediaFilePtr;

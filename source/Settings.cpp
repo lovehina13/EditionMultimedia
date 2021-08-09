@@ -10,13 +10,13 @@
 #include <cmath>
 
 Settings::Settings() :
-        dataFilePath(QString()), multimediaFilePath(QString()), videoMethod(VIDEO_METHOD_VARIABLE),
-                videoSpeed(VIDEO_SPEED_MEDIUM), videoQuality(VIDEO_QUALITY_MEDIUM),
-                videoBitRate(1200), videoMaxSize(0.0), videoFramesPerSecond(30.0),
-                audioMethod(AUDIO_METHOD_VARIABLE), audioQuality(AUDIO_QUALITY_MEDIUM),
-                audioBitRate(128), fromTime(0), toTime(0)
+        _dataFilePath(QString()), _multimediaFilePath(QString()),
+                _videoMethod(VIDEO_METHOD_VARIABLE), _videoSpeed(VIDEO_SPEED_MEDIUM),
+                _videoQuality(VIDEO_QUALITY_MEDIUM), _videoBitRate(1200), _videoMaxSize(0.0),
+                _videoFramesPerSecond(30.0), _audioMethod(AUDIO_METHOD_VARIABLE),
+                _audioQuality(AUDIO_QUALITY_MEDIUM), _audioBitRate(128), _fromTime(0), _toTime(0)
 {
-    this->clear();
+    clear();
 }
 
 Settings::Settings(const QString& dataFilePath, const QString& multimediaFilePath,
@@ -26,7 +26,7 @@ Settings::Settings(const QString& dataFilePath, const QString& multimediaFilePat
         const int& fromTime, const int& toTime) :
         Settings()
 {
-    this->set(dataFilePath, multimediaFilePath, videoMethod, videoSpeed, videoQuality, videoBitRate,
+    set(dataFilePath, multimediaFilePath, videoMethod, videoSpeed, videoQuality, videoBitRate,
             videoMaxSize, videoFramesPerSecond, audioMethod, audioQuality, audioBitRate, fromTime,
             toTime);
 }
@@ -34,7 +34,7 @@ Settings::Settings(const QString& dataFilePath, const QString& multimediaFilePat
 Settings::Settings(const Settings& settings) :
         Settings()
 {
-    this->copy(settings);
+    copy(settings);
 }
 
 Settings::~Settings()
@@ -44,154 +44,154 @@ Settings::~Settings()
 
 Settings& Settings::operator=(const Settings& settings)
 {
-    this->copy(settings);
+    copy(settings);
     return *this;
 }
 
 bool Settings::operator==(const Settings& settings) const
 {
-    return this->equals(settings);
+    return equals(settings);
 }
 
 bool Settings::operator!=(const Settings& settings) const
 {
-    return !this->equals(settings);
+    return !equals(settings);
 }
 
 const QString& Settings::getDataFilePath() const
 {
-    return this->dataFilePath;
+    return _dataFilePath;
 }
 
 const QString& Settings::getMultimediaFilePath() const
 {
-    return this->multimediaFilePath;
+    return _multimediaFilePath;
 }
 
 const int& Settings::getVideoMethod() const
 {
-    return this->videoMethod;
+    return _videoMethod;
 }
 
 const int& Settings::getVideoSpeed() const
 {
-    return this->videoSpeed;
+    return _videoSpeed;
 }
 
 const int& Settings::getVideoQuality() const
 {
-    return this->videoQuality;
+    return _videoQuality;
 }
 
 const int& Settings::getVideoBitRate() const
 {
-    return this->videoBitRate;
+    return _videoBitRate;
 }
 
 const double& Settings::getVideoMaxSize() const
 {
-    return this->videoMaxSize;
+    return _videoMaxSize;
 }
 
 const double& Settings::getVideoFramesPerSecond() const
 {
-    return this->videoFramesPerSecond;
+    return _videoFramesPerSecond;
 }
 
 const int& Settings::getAudioMethod() const
 {
-    return this->audioMethod;
+    return _audioMethod;
 }
 
 const int& Settings::getAudioQuality() const
 {
-    return this->audioQuality;
+    return _audioQuality;
 }
 
 const int& Settings::getAudioBitRate() const
 {
-    return this->audioBitRate;
+    return _audioBitRate;
 }
 
 const int& Settings::getFromTime() const
 {
-    return this->fromTime;
+    return _fromTime;
 }
 
 const int& Settings::getToTime() const
 {
-    return this->toTime;
+    return _toTime;
 }
 
 void Settings::setDataFilePath(const QString& dataFilePath)
 {
-    this->dataFilePath = dataFilePath;
+    _dataFilePath = dataFilePath;
 }
 
 void Settings::setMultimediaFilePath(const QString& multimediaFilePath)
 {
-    this->multimediaFilePath = multimediaFilePath;
+    _multimediaFilePath = multimediaFilePath;
 }
 
 void Settings::setVideoMethod(const int& videoMethod)
 {
-    this->videoMethod = videoMethod;
+    _videoMethod = videoMethod;
 }
 
 void Settings::setVideoSpeed(const int& videoSpeed)
 {
-    this->videoSpeed = videoSpeed;
+    _videoSpeed = videoSpeed;
 }
 
 void Settings::setVideoQuality(const int& videoQuality)
 {
-    this->videoQuality = videoQuality;
+    _videoQuality = videoQuality;
 }
 
 void Settings::setVideoBitRate(const int& videoBitRate)
 {
-    this->videoBitRate = videoBitRate;
+    _videoBitRate = videoBitRate;
 }
 
 void Settings::setVideoMaxSize(const double& videoMaxSize)
 {
-    this->videoMaxSize = videoMaxSize;
+    _videoMaxSize = videoMaxSize;
 }
 
 void Settings::setVideoFramesPerSecond(const double& videoFramesPerSecond)
 {
-    this->videoFramesPerSecond = videoFramesPerSecond;
+    _videoFramesPerSecond = videoFramesPerSecond;
 }
 
 void Settings::setAudioMethod(const int& audioMethod)
 {
-    this->audioMethod = audioMethod;
+    _audioMethod = audioMethod;
 }
 
 void Settings::setAudioQuality(const int& audioQuality)
 {
-    this->audioQuality = audioQuality;
+    _audioQuality = audioQuality;
 }
 
 void Settings::setAudioBitRate(const int& audioBitRate)
 {
-    this->audioBitRate = audioBitRate;
+    _audioBitRate = audioBitRate;
 }
 
 void Settings::setFromTime(const int& fromTime)
 {
-    this->fromTime = fromTime;
+    _fromTime = fromTime;
 }
 
 void Settings::setToTime(const int& toTime)
 {
-    this->toTime = toTime;
+    _toTime = toTime;
 }
 
 void Settings::clear()
 {
-    this->set(QString(), QString(), VIDEO_METHOD_VARIABLE, VIDEO_SPEED_MEDIUM, VIDEO_QUALITY_MEDIUM,
-            1200, 0.0, 30.0, AUDIO_METHOD_VARIABLE, AUDIO_QUALITY_MEDIUM, 128, 0, 0);
+    set(QString(), QString(), VIDEO_METHOD_VARIABLE, VIDEO_SPEED_MEDIUM, VIDEO_QUALITY_MEDIUM, 1200,
+            0.0, 30.0, AUDIO_METHOD_VARIABLE, AUDIO_QUALITY_MEDIUM, 128, 0, 0);
 }
 
 void Settings::set(const QString& dataFilePath, const QString& multimediaFilePath,
@@ -200,58 +200,57 @@ void Settings::set(const QString& dataFilePath, const QString& multimediaFilePat
         const int& audioMethod, const int& audioQuality, const int& audioBitRate,
         const int& fromTime, const int& toTime)
 {
-    this->setDataFilePath(dataFilePath);
-    this->setMultimediaFilePath(multimediaFilePath);
-    this->setVideoMethod(videoMethod);
-    this->setVideoSpeed(videoSpeed);
-    this->setVideoQuality(videoQuality);
-    this->setVideoBitRate(videoBitRate);
-    this->setVideoMaxSize(videoMaxSize);
-    this->setVideoFramesPerSecond(videoFramesPerSecond);
-    this->setAudioMethod(audioMethod);
-    this->setAudioQuality(audioQuality);
-    this->setAudioBitRate(audioBitRate);
-    this->setFromTime(fromTime);
-    this->setToTime(toTime);
+    setDataFilePath(dataFilePath);
+    setMultimediaFilePath(multimediaFilePath);
+    setVideoMethod(videoMethod);
+    setVideoSpeed(videoSpeed);
+    setVideoQuality(videoQuality);
+    setVideoBitRate(videoBitRate);
+    setVideoMaxSize(videoMaxSize);
+    setVideoFramesPerSecond(videoFramesPerSecond);
+    setAudioMethod(audioMethod);
+    setAudioQuality(audioQuality);
+    setAudioBitRate(audioBitRate);
+    setFromTime(fromTime);
+    setToTime(toTime);
 }
 
 void Settings::copy(const Settings& settings)
 {
-    this->set(settings.getDataFilePath(), settings.getMultimediaFilePath(),
-            settings.getVideoMethod(), settings.getVideoSpeed(), settings.getVideoQuality(),
-            settings.getVideoBitRate(), settings.getVideoMaxSize(),
-            settings.getVideoFramesPerSecond(), settings.getAudioMethod(),
-            settings.getAudioQuality(), settings.getAudioBitRate(), settings.getFromTime(),
-            settings.getToTime());
+    set(settings.getDataFilePath(), settings.getMultimediaFilePath(), settings.getVideoMethod(),
+            settings.getVideoSpeed(), settings.getVideoQuality(), settings.getVideoBitRate(),
+            settings.getVideoMaxSize(), settings.getVideoFramesPerSecond(),
+            settings.getAudioMethod(), settings.getAudioQuality(), settings.getAudioBitRate(),
+            settings.getFromTime(), settings.getToTime());
 }
 
 bool Settings::equals(const Settings& settings) const
 {
-    if (this->getDataFilePath() != settings.getDataFilePath())
+    if (getDataFilePath() != settings.getDataFilePath())
         return false;
-    if (this->getMultimediaFilePath() != settings.getMultimediaFilePath())
+    if (getMultimediaFilePath() != settings.getMultimediaFilePath())
         return false;
-    if (this->getVideoMethod() != settings.getVideoMethod())
+    if (getVideoMethod() != settings.getVideoMethod())
         return false;
-    if (this->getVideoSpeed() != settings.getVideoSpeed())
+    if (getVideoSpeed() != settings.getVideoSpeed())
         return false;
-    if (this->getVideoQuality() != settings.getVideoQuality())
+    if (getVideoQuality() != settings.getVideoQuality())
         return false;
-    if (this->getVideoBitRate() != settings.getVideoBitRate())
+    if (getVideoBitRate() != settings.getVideoBitRate())
         return false;
-    if (this->getVideoMaxSize() != settings.getVideoMaxSize())
+    if (getVideoMaxSize() != settings.getVideoMaxSize())
         return false;
-    if (this->getVideoFramesPerSecond() != settings.getVideoFramesPerSecond())
+    if (getVideoFramesPerSecond() != settings.getVideoFramesPerSecond())
         return false;
-    if (this->getAudioMethod() != settings.getAudioMethod())
+    if (getAudioMethod() != settings.getAudioMethod())
         return false;
-    if (this->getAudioQuality() != settings.getAudioQuality())
+    if (getAudioQuality() != settings.getAudioQuality())
         return false;
-    if (this->getAudioBitRate() != settings.getAudioBitRate())
+    if (getAudioBitRate() != settings.getAudioBitRate())
         return false;
-    if (this->getFromTime() != settings.getFromTime())
+    if (getFromTime() != settings.getFromTime())
         return false;
-    if (this->getToTime() != settings.getToTime())
+    if (getToTime() != settings.getToTime())
         return false;
     return true;
 }
@@ -261,43 +260,43 @@ void Settings::fromString(const QString& fromString, const QChar& sep)
     const QStringList fromStringList = fromString.split(sep);
     if (fromStringList.count() < 13)
         return;
-    this->setDataFilePath(fromStringList.at(0));
-    this->setMultimediaFilePath(fromStringList.at(1));
-    this->setVideoMethod(fromStringList.at(2).toInt());
-    this->setVideoSpeed(fromStringList.at(3).toInt());
-    this->setVideoQuality(fromStringList.at(4).toInt());
-    this->setVideoBitRate(fromStringList.at(5).toInt());
-    this->setVideoMaxSize(fromStringList.at(6).toDouble());
-    this->setVideoFramesPerSecond(fromStringList.at(7).toDouble());
-    this->setAudioMethod(fromStringList.at(8).toInt());
-    this->setAudioQuality(fromStringList.at(9).toInt());
-    this->setAudioBitRate(fromStringList.at(10).toInt());
-    this->setFromTime(fromStringList.at(11).toInt());
-    this->setToTime(fromStringList.at(12).toInt());
+    setDataFilePath(fromStringList.at(0));
+    setMultimediaFilePath(fromStringList.at(1));
+    setVideoMethod(fromStringList.at(2).toInt());
+    setVideoSpeed(fromStringList.at(3).toInt());
+    setVideoQuality(fromStringList.at(4).toInt());
+    setVideoBitRate(fromStringList.at(5).toInt());
+    setVideoMaxSize(fromStringList.at(6).toDouble());
+    setVideoFramesPerSecond(fromStringList.at(7).toDouble());
+    setAudioMethod(fromStringList.at(8).toInt());
+    setAudioQuality(fromStringList.at(9).toInt());
+    setAudioBitRate(fromStringList.at(10).toInt());
+    setFromTime(fromStringList.at(11).toInt());
+    setToTime(fromStringList.at(12).toInt());
 }
 
 const QString Settings::toString(const QChar& sep) const
 {
     QString toString;
-    toString += this->getDataFilePath() + sep;
-    toString += this->getMultimediaFilePath() + sep;
-    toString += QString::number(this->getVideoMethod()) + sep;
-    toString += QString::number(this->getVideoSpeed()) + sep;
-    toString += QString::number(this->getVideoQuality()) + sep;
-    toString += QString::number(this->getVideoBitRate()) + sep;
-    toString += QString::number(this->getVideoMaxSize()) + sep;
-    toString += QString::number(this->getVideoFramesPerSecond()) + sep;
-    toString += QString::number(this->getAudioMethod()) + sep;
-    toString += QString::number(this->getAudioQuality()) + sep;
-    toString += QString::number(this->getAudioBitRate()) + sep;
-    toString += QString::number(this->getFromTime()) + sep;
-    toString += QString::number(this->getToTime());
+    toString += getDataFilePath() + sep;
+    toString += getMultimediaFilePath() + sep;
+    toString += QString::number(getVideoMethod()) + sep;
+    toString += QString::number(getVideoSpeed()) + sep;
+    toString += QString::number(getVideoQuality()) + sep;
+    toString += QString::number(getVideoBitRate()) + sep;
+    toString += QString::number(getVideoMaxSize()) + sep;
+    toString += QString::number(getVideoFramesPerSecond()) + sep;
+    toString += QString::number(getAudioMethod()) + sep;
+    toString += QString::number(getAudioQuality()) + sep;
+    toString += QString::number(getAudioBitRate()) + sep;
+    toString += QString::number(getFromTime()) + sep;
+    toString += QString::number(getToTime());
     return toString;
 }
 
 const QString Settings::getVideoSpeedToString() const
 {
-    const int& videoSpeed = this->getVideoSpeed();
+    const int& videoSpeed = getVideoSpeed();
     return QString("-preset %1").arg(
             (videoSpeed == VIDEO_SPEED_VERY_SLOW) ? QString("veryslow") :
             (videoSpeed == VIDEO_SPEED_SLOWER) ? QString("slower") :
@@ -310,7 +309,7 @@ const QString Settings::getVideoSpeedToString() const
 
 const QString Settings::getVideoQualityToString() const
 {
-    const int& videoQuality = this->getVideoQuality();
+    const int& videoQuality = getVideoQuality();
     return QString("-crf %1").arg(
             QString::number(
                     (videoQuality == VIDEO_QUALITY_HIGH) ? 18 :
@@ -320,42 +319,42 @@ const QString Settings::getVideoQualityToString() const
 
 const QString Settings::getVideoBitRateToString() const
 {
-    const int& videoBitRate = this->getVideoBitRate();
+    const int& videoBitRate = getVideoBitRate();
     return QString("-b:v %1k").arg(QString::number(videoBitRate));
 }
 
 const QString Settings::getVideoFramesPerSecondToString() const
 {
-    const double& videoFramesPerSecond = this->getVideoFramesPerSecond();
+    const double& videoFramesPerSecond = getVideoFramesPerSecond();
     return QString("-r %1").arg(QString::number(videoFramesPerSecond));
 }
 
 const QString Settings::getAudioQualityToString() const
 {
-    const int& audioQuality = this->getAudioQuality();
+    const int& audioQuality = getAudioQuality();
     return QString("-vbr %1").arg(QString::number(5 - audioQuality));
 }
 
 const QString Settings::getAudioBitRateToString() const
 {
-    const int& audioBitRate = this->getAudioBitRate();
+    const int& audioBitRate = getAudioBitRate();
     return QString("-b:a %1k").arg(QString::number(audioBitRate));
 }
 
 const QString Settings::getVideoSettings() const
 {
-    const int& videoMethod = this->getVideoMethod();
-    const QString videoSpeed = this->getVideoSpeedToString();
-    const QString videoQuality = this->getVideoQualityToString();
-    const QString videoBitRate = this->getVideoBitRateToString();
-    const QString videoFramesPerSecond = this->getVideoFramesPerSecondToString();
+    const int& videoMethod = getVideoMethod();
+    const QString videoSpeed = getVideoSpeedToString();
+    const QString videoQuality = getVideoQualityToString();
+    const QString videoBitRate = getVideoBitRateToString();
+    const QString videoFramesPerSecond = getVideoFramesPerSecondToString();
 
     if (videoMethod == VIDEO_METHOD_MAX_SIZE)
     {
-        const double& videoMaxSize = this->getVideoMaxSize();
-        const int& audioBitRate = this->getAudioBitRate();
-        const int& fromTime = this->getFromTime();
-        const int& toTime = this->getToTime();
+        const double& videoMaxSize = getVideoMaxSize();
+        const int& audioBitRate = getAudioBitRate();
+        const int& fromTime = getFromTime();
+        const int& toTime = getToTime();
 
         const int totalTime = toTime - fromTime;
         const int totalBitRate = static_cast<int>(floor(
@@ -377,9 +376,9 @@ const QString Settings::getVideoSettings() const
 
 const QString Settings::getAudioSettings() const
 {
-    const int& audioMethod = this->getAudioMethod();
-    const QString audioQuality = this->getAudioQualityToString();
-    const QString audioBitRate = this->getAudioBitRateToString();
+    const int& audioMethod = getAudioMethod();
+    const QString audioQuality = getAudioQualityToString();
+    const QString audioBitRate = getAudioBitRateToString();
 
     const QString audioSet = ((audioMethod == AUDIO_METHOD_VARIABLE) ? audioQuality : audioBitRate);
     const QString audioSettings = QString("-c:a aac %1").arg(audioSet);
@@ -389,8 +388,8 @@ const QString Settings::getAudioSettings() const
 
 const QString Settings::getTimeSettings() const
 {
-    const int& fromTime = this->getFromTime();
-    const int& toTime = this->getToTime();
+    const int& fromTime = getFromTime();
+    const int& toTime = getToTime();
 
     const QString timeSettings = QString("-ss %1 -to %2").arg(
             QString::number(static_cast<double>(fromTime) / 1000.0),
