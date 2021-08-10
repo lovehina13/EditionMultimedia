@@ -197,97 +197,92 @@ void MainWindow::on_actionAbout_triggered()
     messageBox->exec();
 }
 
-void MainWindow::on_spinBoxFrameBegin_valueChanged()
+void MainWindow::on_spinBoxFrameBegin_valueChanged(int value)
 {
     Settings settings = _data.getSettings();
-    settings.setFromTime(_ui->spinBoxFrameBegin->value() * 10);
+    settings.setFromTime(value * 10);
     _data.setSettings(settings);
 
     _ui->spinBoxFrameCurrent->setValue(_ui->spinBoxFrameBegin->value());
 }
 
-void MainWindow::on_spinBoxFrameCurrent_valueChanged()
+void MainWindow::on_spinBoxFrameCurrent_valueChanged(int value)
 {
-    updateFrame(_ui->spinBoxFrameCurrent->value() * 10);
+    updateFrame(value * 10);
 }
 
-void MainWindow::on_spinBoxFrameEnd_valueChanged()
+void MainWindow::on_spinBoxFrameEnd_valueChanged(int value)
 {
     Settings settings = _data.getSettings();
-    settings.setToTime(_ui->spinBoxFrameEnd->value() * 10);
+    settings.setToTime(value * 10);
     _data.setSettings(settings);
 
     _ui->spinBoxFrameCurrent->setValue(_ui->spinBoxFrameEnd->value());
 }
 
-void MainWindow::on_comboBoxVideoMethod_currentIndexChanged()
+void MainWindow::on_comboBoxVideoMethod_currentIndexChanged(int index)
 {
     Settings settings = _data.getSettings();
-    settings.setVideoMethod(
-            static_cast<Settings::VideoMethod>(_ui->comboBoxVideoMethod->currentIndex()));
+    settings.setVideoMethod(static_cast<Settings::VideoMethod>(index));
     _data.setSettings(settings);
 
     updateSettings();
 }
 
-void MainWindow::on_comboBoxVideoSpeed_currentIndexChanged()
+void MainWindow::on_comboBoxVideoSpeed_currentIndexChanged(int index)
 {
     Settings settings = _data.getSettings();
-    settings.setVideoSpeed(
-            static_cast<Settings::VideoSpeed>(_ui->comboBoxVideoSpeed->currentIndex()));
+    settings.setVideoSpeed(static_cast<Settings::VideoSpeed>(index));
     _data.setSettings(settings);
 }
 
-void MainWindow::on_comboBoxVideoQuality_currentIndexChanged()
+void MainWindow::on_comboBoxVideoQuality_currentIndexChanged(int index)
 {
     Settings settings = _data.getSettings();
-    settings.setVideoQuality(
-            static_cast<Settings::VideoQuality>(_ui->comboBoxVideoQuality->currentIndex()));
+    settings.setVideoQuality(static_cast<Settings::VideoQuality>(index));
     _data.setSettings(settings);
 }
 
-void MainWindow::on_spinBoxVideoBitRate_valueChanged()
+void MainWindow::on_spinBoxVideoBitRate_valueChanged(int value)
 {
     Settings settings = _data.getSettings();
-    settings.setVideoBitRate(_ui->spinBoxVideoBitRate->value());
+    settings.setVideoBitRate(value);
     _data.setSettings(settings);
 }
 
-void MainWindow::on_doubleSpinBoxVideoMaxSize_valueChanged()
+void MainWindow::on_doubleSpinBoxVideoMaxSize_valueChanged(double value)
 {
     Settings settings = _data.getSettings();
-    settings.setVideoMaxSize(_ui->doubleSpinBoxVideoMaxSize->value());
+    settings.setVideoMaxSize(value);
     _data.setSettings(settings);
 }
 
-void MainWindow::on_doubleSpinBoxVideoFramesPerSecond_valueChanged()
+void MainWindow::on_doubleSpinBoxVideoFramesPerSecond_valueChanged(double value)
 {
     Settings settings = _data.getSettings();
-    settings.setVideoFramesPerSecond(_ui->doubleSpinBoxVideoFramesPerSecond->value());
+    settings.setVideoFramesPerSecond(value);
     _data.setSettings(settings);
 }
 
-void MainWindow::on_comboBoxAudioMethod_currentIndexChanged()
+void MainWindow::on_comboBoxAudioMethod_currentIndexChanged(int index)
 {
     Settings settings = _data.getSettings();
-    settings.setAudioMethod(
-            static_cast<Settings::AudioMethod>(_ui->comboBoxAudioMethod->currentIndex()));
+    settings.setAudioMethod(static_cast<Settings::AudioMethod>(index));
     _data.setSettings(settings);
 
     updateSettings();
 }
 
-void MainWindow::on_comboBoxAudioQuality_currentIndexChanged()
+void MainWindow::on_comboBoxAudioQuality_currentIndexChanged(int index)
 {
     Settings settings = _data.getSettings();
-    settings.setAudioQuality(
-            static_cast<Settings::AudioQuality>(_ui->comboBoxAudioQuality->currentIndex()));
+    settings.setAudioQuality(static_cast<Settings::AudioQuality>(index));
     _data.setSettings(settings);
 }
 
-void MainWindow::on_spinBoxAudioBitRate_valueChanged()
+void MainWindow::on_spinBoxAudioBitRate_valueChanged(int value)
 {
     Settings settings = _data.getSettings();
-    settings.setAudioBitRate(_ui->spinBoxAudioBitRate->value());
+    settings.setAudioBitRate(value);
     _data.setSettings(settings);
 }

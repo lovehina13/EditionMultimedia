@@ -42,18 +42,18 @@ protected slots:
     void on_actionQuit_triggered();
     void on_actionDocumentation_triggered();
     void on_actionAbout_triggered();
-    void on_spinBoxFrameBegin_valueChanged();
-    void on_spinBoxFrameCurrent_valueChanged();
-    void on_spinBoxFrameEnd_valueChanged();
-    void on_comboBoxVideoMethod_currentIndexChanged();
-    void on_comboBoxVideoSpeed_currentIndexChanged();
-    void on_comboBoxVideoQuality_currentIndexChanged();
-    void on_spinBoxVideoBitRate_valueChanged();
-    void on_doubleSpinBoxVideoMaxSize_valueChanged();
-    void on_doubleSpinBoxVideoFramesPerSecond_valueChanged();
-    void on_comboBoxAudioMethod_currentIndexChanged();
-    void on_comboBoxAudioQuality_currentIndexChanged();
-    void on_spinBoxAudioBitRate_valueChanged();
+    void on_spinBoxFrameBegin_valueChanged(int value);
+    void on_spinBoxFrameCurrent_valueChanged(int value);
+    void on_spinBoxFrameEnd_valueChanged(int value);
+    void on_comboBoxVideoMethod_currentIndexChanged(int index);
+    void on_comboBoxVideoSpeed_currentIndexChanged(int index);
+    void on_comboBoxVideoQuality_currentIndexChanged(int index);
+    void on_spinBoxVideoBitRate_valueChanged(int value);
+    void on_doubleSpinBoxVideoMaxSize_valueChanged(double value);
+    void on_doubleSpinBoxVideoFramesPerSecond_valueChanged(double value);
+    void on_comboBoxAudioMethod_currentIndexChanged(int index);
+    void on_comboBoxAudioQuality_currentIndexChanged(int index);
+    void on_spinBoxAudioBitRate_valueChanged(int value);
 
 private:
     Ui::MainWindow* _ui { nullptr };
