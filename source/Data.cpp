@@ -9,43 +9,9 @@
 #include "Tools.h"
 #include <QStringList>
 
-Data::Data() :
-        _settings(Settings()), _multimediaFile(MultimediaFile())
-{
-    clear();
-}
-
 Data::Data(const Settings& settings, const MultimediaFile& multimediaFile) :
-        Data()
+        _settings(settings), _multimediaFile(multimediaFile)
 {
-    set(settings, multimediaFile);
-}
-
-Data::Data(const Data& data) :
-        Data()
-{
-    copy(data);
-}
-
-Data::~Data()
-{
-
-}
-
-Data& Data::operator=(const Data& data)
-{
-    copy(data);
-    return *this;
-}
-
-bool Data::operator==(const Data& data) const
-{
-    return equals(data);
-}
-
-bool Data::operator!=(const Data& data) const
-{
-    return !equals(data);
 }
 
 const Settings& Data::getSettings() const
@@ -70,27 +36,13 @@ void Data::setMultimediaFile(const MultimediaFile& multimediaFile)
 
 void Data::clear()
 {
-    set(Settings(), MultimediaFile());
+    *this = Data();
 }
 
 void Data::set(const Settings& settings, const MultimediaFile& multimediaFile)
 {
     setSettings(settings);
     setMultimediaFile(multimediaFile);
-}
-
-void Data::copy(const Data& data)
-{
-    set(data.getSettings(), data.getMultimediaFile());
-}
-
-bool Data::equals(const Data& data) const
-{
-    if (getSettings() != data.getSettings())
-        return false;
-    if (getMultimediaFile() != data.getMultimediaFile())
-        return false;
-    return true;
 }
 
 void Data::fromString(const QString& fromString, const QChar& sep)

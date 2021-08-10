@@ -19,15 +19,12 @@ class MultimediaFile
 {
 public:
     // Constructors and destructors
-    MultimediaFile();
+    MultimediaFile() = default;
     MultimediaFile(const QString& filePath);
-    MultimediaFile(const MultimediaFile& multimediaFile);
-    virtual ~MultimediaFile();
 
     // Operators
-    MultimediaFile& operator=(const MultimediaFile& multimediaFile);
-    bool operator==(const MultimediaFile& multimediaFile) const;
-    bool operator!=(const MultimediaFile& multimediaFile) const;
+    bool operator==(const MultimediaFile& multimediaFile) const = default;
+    bool operator!=(const MultimediaFile& multimediaFile) const = default;
 
     // Getters
     const QString& getFilePath() const;
@@ -38,8 +35,6 @@ public:
     // Generic methods
     void clear();
     void set(const QString& filePath);
-    void copy(const MultimediaFile& multimediaFile);
-    bool equals(const MultimediaFile& multimediaFile) const;
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 
@@ -54,12 +49,12 @@ private:
     QString _filePath;
 };
 
-typedef MultimediaFile* MultimediaFilePtr;
-typedef QList<MultimediaFile> MultimediaFilesList;
-typedef QList<MultimediaFilePtr> MultimediaFilesPtrList;
-typedef QMap<int, MultimediaFile> MultimediaFilesIdMap;
-typedef QMap<int, MultimediaFilePtr> MultimediaFilesPtrIdMap;
-typedef QMap<QString, MultimediaFile> MultimediaFilesNamesMap;
-typedef QMap<QString, MultimediaFilePtr> MultimediaFilesPtrNamesMap;
+using MultimediaFilePtr = MultimediaFile*;
+using MultimediaFilesList = QList<MultimediaFile>;
+using MultimediaFilesPtrList = QList<MultimediaFilePtr>;
+using MultimediaFilesIdMap = QMap<int, MultimediaFile>;
+using MultimediaFilesPtrIdMap = QMap<int, MultimediaFilePtr>;
+using MultimediaFilesNamesMap = QMap<QString, MultimediaFile>;
+using MultimediaFilesPtrNamesMap = QMap<QString, MultimediaFilePtr>;
 
 #endif /* MULTIMEDIAFILE_H */

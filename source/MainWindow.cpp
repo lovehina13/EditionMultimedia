@@ -223,7 +223,8 @@ void MainWindow::on_spinBoxFrameEnd_valueChanged()
 void MainWindow::on_comboBoxVideoMethod_currentIndexChanged()
 {
     Settings settings = _data.getSettings();
-    settings.setVideoMethod(_ui->comboBoxVideoMethod->currentIndex());
+    settings.setVideoMethod(
+            static_cast<Settings::VideoMethod>(_ui->comboBoxVideoMethod->currentIndex()));
     _data.setSettings(settings);
 
     updateSettings();
@@ -232,14 +233,16 @@ void MainWindow::on_comboBoxVideoMethod_currentIndexChanged()
 void MainWindow::on_comboBoxVideoSpeed_currentIndexChanged()
 {
     Settings settings = _data.getSettings();
-    settings.setVideoSpeed(_ui->comboBoxVideoSpeed->currentIndex());
+    settings.setVideoSpeed(
+            static_cast<Settings::VideoSpeed>(_ui->comboBoxVideoSpeed->currentIndex()));
     _data.setSettings(settings);
 }
 
 void MainWindow::on_comboBoxVideoQuality_currentIndexChanged()
 {
     Settings settings = _data.getSettings();
-    settings.setVideoQuality(_ui->comboBoxVideoQuality->currentIndex());
+    settings.setVideoQuality(
+            static_cast<Settings::VideoQuality>(_ui->comboBoxVideoQuality->currentIndex()));
     _data.setSettings(settings);
 }
 
@@ -267,7 +270,8 @@ void MainWindow::on_doubleSpinBoxVideoFramesPerSecond_valueChanged()
 void MainWindow::on_comboBoxAudioMethod_currentIndexChanged()
 {
     Settings settings = _data.getSettings();
-    settings.setAudioMethod(_ui->comboBoxAudioMethod->currentIndex());
+    settings.setAudioMethod(
+            static_cast<Settings::AudioMethod>(_ui->comboBoxAudioMethod->currentIndex()));
     _data.setSettings(settings);
 
     updateSettings();
@@ -276,7 +280,8 @@ void MainWindow::on_comboBoxAudioMethod_currentIndexChanged()
 void MainWindow::on_comboBoxAudioQuality_currentIndexChanged()
 {
     Settings settings = _data.getSettings();
-    settings.setAudioQuality(_ui->comboBoxAudioQuality->currentIndex());
+    settings.setAudioQuality(
+            static_cast<Settings::AudioQuality>(_ui->comboBoxAudioQuality->currentIndex()));
     _data.setSettings(settings);
 }
 

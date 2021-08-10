@@ -10,43 +10,9 @@
 #include <QFile>
 #include <QStringList>
 
-MultimediaFile::MultimediaFile() :
-        _filePath(QString())
-{
-    clear();
-}
-
 MultimediaFile::MultimediaFile(const QString& filePath) :
-        MultimediaFile()
+        _filePath(filePath)
 {
-    set(filePath);
-}
-
-MultimediaFile::MultimediaFile(const MultimediaFile& multimediaFile) :
-        MultimediaFile()
-{
-    copy(multimediaFile);
-}
-
-MultimediaFile::~MultimediaFile()
-{
-
-}
-
-MultimediaFile& MultimediaFile::operator=(const MultimediaFile& multimediaFile)
-{
-    copy(multimediaFile);
-    return *this;
-}
-
-bool MultimediaFile::operator==(const MultimediaFile& multimediaFile) const
-{
-    return equals(multimediaFile);
-}
-
-bool MultimediaFile::operator!=(const MultimediaFile& multimediaFile) const
-{
-    return !equals(multimediaFile);
 }
 
 const QString& MultimediaFile::getFilePath() const
@@ -61,24 +27,12 @@ void MultimediaFile::setFilePath(const QString& filePath)
 
 void MultimediaFile::clear()
 {
-    set(QString());
+    *this = MultimediaFile();
 }
 
 void MultimediaFile::set(const QString& filePath)
 {
     setFilePath(filePath);
-}
-
-void MultimediaFile::copy(const MultimediaFile& multimediaFile)
-{
-    set(multimediaFile.getFilePath());
-}
-
-bool MultimediaFile::equals(const MultimediaFile& multimediaFile) const
-{
-    if (getFilePath() != multimediaFile.getFilePath())
-        return false;
-    return true;
 }
 
 void MultimediaFile::fromString(const QString& fromString, const QChar& sep)

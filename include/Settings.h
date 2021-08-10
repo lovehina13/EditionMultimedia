@@ -16,32 +16,57 @@
 class Settings
 {
 public:
+    enum VideoMethod
+    {
+        VIDEO_METHOD_VARIABLE, VIDEO_METHOD_CONSTANT, VIDEO_METHOD_MAX_SIZE
+    };
+
+    enum VideoSpeed
+    {
+        VIDEO_SPEED_VERY_SLOW, VIDEO_SPEED_SLOWER, VIDEO_SPEED_SLOW, VIDEO_SPEED_MEDIUM,
+        VIDEO_SPEED_FAST, VIDEO_SPEED_FASTER, VIDEO_SPEED_VERY_FAST
+    };
+
+    enum VideoQuality
+    {
+        VIDEO_QUALITY_HIGH, VIDEO_QUALITY_MEDIUM, VIDEO_QUALITY_LOW
+    };
+
+    enum AudioMethod
+    {
+        AUDIO_METHOD_VARIABLE, AUDIO_METHOD_CONSTANT
+    };
+
+    enum AudioQuality
+    {
+        AUDIO_QUALITY_VERY_HIGH, AUDIO_QUALITY_HIGH, AUDIO_QUALITY_MEDIUM, AUDIO_QUALITY_LOW,
+        AUDIO_QUALITY_VERY_LOW
+    };
+
     // Constructors and destructors
-    Settings();
-    Settings(const QString& dataFilePath, const QString& multimediaFilePath, const int& videoMethod,
-            const int& videoSpeed, const int& videoQuality, const int& videoBitRate,
-            const double& videoMaxSize, const double& videoFramesPerSecond, const int& audioMethod,
-            const int& audioQuality, const int& audioBitRate, const int& fromTime,
+    Settings() = default;
+    Settings(const QString& dataFilePath, const QString& multimediaFilePath,
+            const VideoMethod& videoMethod, const VideoSpeed& videoSpeed,
+            const VideoQuality& videoQuality, const int& videoBitRate, const double& videoMaxSize,
+            const double& videoFramesPerSecond, const AudioMethod& audioMethod,
+            const AudioQuality& audioQuality, const int& audioBitRate, const int& fromTime,
             const int& toTime);
-    Settings(const Settings& settings);
-    virtual ~Settings();
 
     // Operators
-    Settings& operator=(const Settings& settings);
-    bool operator==(const Settings& settings) const;
-    bool operator!=(const Settings& settings) const;
+    bool operator==(const Settings& settings) const = default;
+    bool operator!=(const Settings& settings) const = default;
 
     // Getters
     const QString& getDataFilePath() const;
     const QString& getMultimediaFilePath() const;
-    const int& getVideoMethod() const;
-    const int& getVideoSpeed() const;
-    const int& getVideoQuality() const;
+    const VideoMethod& getVideoMethod() const;
+    const VideoSpeed& getVideoSpeed() const;
+    const VideoQuality& getVideoQuality() const;
     const int& getVideoBitRate() const;
     const double& getVideoMaxSize() const;
     const double& getVideoFramesPerSecond() const;
-    const int& getAudioMethod() const;
-    const int& getAudioQuality() const;
+    const AudioMethod& getAudioMethod() const;
+    const AudioQuality& getAudioQuality() const;
     const int& getAudioBitRate() const;
     const int& getFromTime() const;
     const int& getToTime() const;
@@ -49,27 +74,26 @@ public:
     // Setters
     void setDataFilePath(const QString& dataFilePath);
     void setMultimediaFilePath(const QString& multimediaFilePath);
-    void setVideoMethod(const int& videoMethod);
-    void setVideoSpeed(const int& videoSpeed);
-    void setVideoQuality(const int& videoQuality);
+    void setVideoMethod(const VideoMethod& videoMethod);
+    void setVideoSpeed(const VideoSpeed& videoSpeed);
+    void setVideoQuality(const VideoQuality& videoQuality);
     void setVideoBitRate(const int& videoBitRate);
     void setVideoMaxSize(const double& videoMaxSize);
     void setVideoFramesPerSecond(const double& videoFramesPerSecond);
-    void setAudioMethod(const int& audioMethod);
-    void setAudioQuality(const int& audioQuality);
+    void setAudioMethod(const AudioMethod& audioMethod);
+    void setAudioQuality(const AudioQuality& audioQuality);
     void setAudioBitRate(const int& audioBitRate);
     void setFromTime(const int& fromTime);
     void setToTime(const int& toTime);
 
     // Generic methods
     void clear();
-    void set(const QString& dataFilePath, const QString& multimediaFilePath, const int& videoMethod,
-            const int& videoSpeed, const int& videoQuality, const int& videoBitRate,
-            const double& videoMaxSize, const double& videoFramesPerSecond, const int& audioMethod,
-            const int& audioQuality, const int& audioBitRate, const int& fromTime,
+    void set(const QString& dataFilePath, const QString& multimediaFilePath,
+            const VideoMethod& videoMethod, const VideoSpeed& videoSpeed,
+            const VideoQuality& videoQuality, const int& videoBitRate, const double& videoMaxSize,
+            const double& videoFramesPerSecond, const AudioMethod& audioMethod,
+            const AudioQuality& audioQuality, const int& audioBitRate, const int& fromTime,
             const int& toTime);
-    void copy(const Settings& settings);
-    bool equals(const Settings& settings) const;
     void fromString(const QString& fromString, const QChar& sep);
     const QString toString(const QChar& sep) const;
 
@@ -85,56 +109,29 @@ public:
     const QString getTimeSettings() const;
     const QString getMetadataSettings() const;
 
-    enum videoMethods
-    {
-        VIDEO_METHOD_VARIABLE, VIDEO_METHOD_CONSTANT, VIDEO_METHOD_MAX_SIZE
-    };
-
-    enum videoSpeeds
-    {
-        VIDEO_SPEED_VERY_SLOW, VIDEO_SPEED_SLOWER, VIDEO_SPEED_SLOW, VIDEO_SPEED_MEDIUM,
-        VIDEO_SPEED_FAST, VIDEO_SPEED_FASTER, VIDEO_SPEED_VERY_FAST
-    };
-
-    enum videoQualities
-    {
-        VIDEO_QUALITY_HIGH, VIDEO_QUALITY_MEDIUM, VIDEO_QUALITY_LOW
-    };
-
-    enum audioMethods
-    {
-        AUDIO_METHOD_VARIABLE, AUDIO_METHOD_CONSTANT
-    };
-
-    enum audioQualities
-    {
-        AUDIO_QUALITY_VERY_HIGH, AUDIO_QUALITY_HIGH, AUDIO_QUALITY_MEDIUM, AUDIO_QUALITY_LOW,
-        AUDIO_QUALITY_VERY_LOW
-    };
-
 private:
     // Class members
     QString _dataFilePath;
     QString _multimediaFilePath;
-    int _videoMethod;
-    int _videoSpeed;
-    int _videoQuality;
-    int _videoBitRate;
-    double _videoMaxSize;
-    double _videoFramesPerSecond;
-    int _audioMethod;
-    int _audioQuality;
-    int _audioBitRate;
-    int _fromTime;
-    int _toTime;
+    VideoMethod _videoMethod { VIDEO_METHOD_VARIABLE };
+    VideoSpeed _videoSpeed { VIDEO_SPEED_MEDIUM };
+    VideoQuality _videoQuality { VIDEO_QUALITY_MEDIUM };
+    int _videoBitRate { 1200 };
+    double _videoMaxSize { 0.0 };
+    double _videoFramesPerSecond { 30.0 };
+    AudioMethod _audioMethod { AUDIO_METHOD_VARIABLE };
+    AudioQuality _audioQuality { AUDIO_QUALITY_MEDIUM };
+    int _audioBitRate { 128 };
+    int _fromTime { 0 };
+    int _toTime { 0 };
 };
 
-typedef Settings* SettingsPtr;
-typedef QList<Settings> SettingsList;
-typedef QList<SettingsPtr> SettingsPtrList;
-typedef QMap<int, Settings> SettingsIdMap;
-typedef QMap<int, SettingsPtr> SettingsPtrIdMap;
-typedef QMap<QString, Settings> SettingsNamesMap;
-typedef QMap<QString, SettingsPtr> SettingsPtrNamesMap;
+using SettingsPtr = Settings*;
+using SettingsList = QList<Settings>;
+using SettingsPtrList = QList<SettingsPtr>;
+using SettingsIdMap = QMap<int, Settings>;
+using SettingsPtrIdMap = QMap<int, SettingsPtr>;
+using SettingsNamesMap = QMap<QString, Settings>;
+using SettingsPtrNamesMap = QMap<QString, SettingsPtr>;
 
 #endif /* SETTINGS_H */
